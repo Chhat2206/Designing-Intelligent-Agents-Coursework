@@ -1,0 +1,144 @@
+\documentclass{infor}
+
+%startlocaldefs
+
+% local macros
+%\newtheorem{thm}{Theorem}
+%\newtheorem{prop}{Proposition}
+%\newtheorem{cor}{Corollary}
+%\newtheorem{lem}{Lemma}
+
+%\theoremstyle{remark}
+%\newtheorem{defn}{Definition}
+%\newtheorem{rem}{Remark}
+%\newtheorem{exmp}{Example}
+%\newtheorem{note}{Note}
+
+%endlocaldefs
+
+\begin{document}
+
+\begin{frontmatter}
+
+\pretitle{Research Article}
+
+\title{Designing Intelligent Agents Project Proposal}
+%\title{\thanksref{t1}}
+%\thankstext[id=t1]{}
+
+\author{\inits{F.}\fnms{Chhatresh} \snm{Sehgal}\ead[label=e1]{hfycs2@nottingham.edu.my}\bio{bio1}}
+\author{\inits{S.}\fnms{Youssef} \snm{Mohamed}\ead[label=e2]{????@nottingham.edu.my}\bio{bio2}}
+%\thankstext[type=corresp,id=]{}
+%\thankstext[id=]{}
+%\runtitle{}  %use if necessary to change auto-generated           
+%\runauthor{} %use if necessary to change auto-generated            
+
+%\dedicated{}
+
+
+\end{frontmatter}
+
+
+\section{Introduction}
+Financial markets exhibit dynamic behavior driven by a combination of fundamental, technical, and sentiment-based factors. Traditional trading strategies often rely on static rules, making them less adaptive to real-time market shifts. This project proposes the development of a probabilistic-based proactive intelligent trading agent that dynamically adjusts its trading strategies based on market sentiment and probabilistic decision-making.
+
+\section{Objectives}
+The proposed trading agent will:
+\begin{enumerate}
+    \item Integrate sentiment analysis from scraped stock market news and articles.
+    \item Utilize probabilistic intelligence to dynamically adjust trading strategies.
+    \item Implement bullish, bearish, and neutral trading approaches based on market sentiment and trends.
+    \item Use the Yahoo Finance API for real-time stock data.
+    \item Use Stocker (a GitHub project) for scraping relevant financial articles and news.
+    \item Execute paper trading via the Alpaca API to simulate market performance before real-world deployment.
+\end{enumerate}
+
+\section{Methodology}
+\subsection{Data Collection \& Sentiment Analysis}
+The agent will use Stocker to scrape articles and financial news, applying Natural Language Processing (NLP) techniques to determine sentiment polarity (positive, negative, neutral). The sentiment will be combined with market indicators from the Yahoo Finance API.
+
+\subsection{Market State Classification}
+The agent will classify the market into three states:
+\begin{enumerate}
+    \item {\bfseries Bullish:} Positive sentiment and strong uptrend signals trigger a trend-following strategy.
+    \item {\bfseries Bearish:} Negative sentiment and downtrend detection prompt short-selling or hedging strategies.
+    \item {\bfseries Neutral:} Mixed sentiment and low volatility suggest mean-reversion strategies.
+\end{enumerate}
+
+\subsection{Implementation and Evaluation}
+\begin{itemize}
+    \item \textbf{Probabilistic Decision-Making:} A Bayesian inference model or Markov Decision Process (MDP) will estimate the likelihood of market conditions shifting, allowing the agent to proactively adjust its positions.
+    \item \textbf{Trade Execution \& Simulation:} Trades will be executed in a simulated environment using Alpaca’s paper trading API, allowing for performance evaluation.
+    \item \textbf{Evaluation Metrics:} The agent’s success will be measured using the Sharpe ratio, win-loss ratio, drawdown, and profitability over different market cycles.
+\end{itemize}
+
+
+\section{Experimental Design Questions}
+\begin{enumerate}
+    \item How can the probabilistic model be optimized to improve the agent’s predictive accuracy and decision-making?
+    \item What is the impact of different sentiment analysis techniques on the agent’s trading performance?
+    \item How does the agent adapt to changing market conditions, and what mechanisms can improve its resilience against market shocks?
+\end{enumerate}
+% \citep{BLG09,BlanLedShi10}
+
+
+
+
+% \bibliographystyle{infor}
+% \bibliography{biblio}
+\vfill
+
+%% Table %%
+%%%%%%%%%%%%%%%%%%%%%%
+%\begin{table}
+%\caption{}\label{}
+%\end{table}
+
+%% Figure %%
+%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[t]
+%\includegraphics{}
+%\caption{}\label{}
+%\end{figure}
+
+
+%% Theorem %%
+%%%%%%%%%%%%%%%%%%%%%%
+%%\begin{thm}[]\label{} Theorem
+%%\end{thm}
+
+
+%% Proof %%
+%%%%%%%%%%%%%%%%%%%%%%
+%\begin{proof}
+%\end{proof}
+
+%% Appendices %%
+%%%%%%%%%%%%%%%%%%%%%%
+%\begin{appendix}
+%\section{Appendix section}
+%\end{appendix}
+
+%% Acknowledgements %%
+%%%%%%%%%%%%%%%%%%%%%%
+%\begin{acknowledgement}%[title={Acknowledgments}]
+%\end{acknowledgement}
+
+%% Funding %%
+%%%%%%%%%%%%%%%%%%%%%%
+%\begin{funding}
+%\end{funding}
+
+%% Bibliography %%
+%%%%%%%%%%%%%%%%%%%%%%
+%\bibliographystyle{infor}
+%\bibliography{biblio}
+
+%% Biography %%
+%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{biography}\label{}
+%\author{} 
+%\end{biography}
+
+\end{document} 
