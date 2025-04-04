@@ -1,45 +1,73 @@
 import yfinance as yf
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import time
+import random
 
-# try:
-#     # Load the Excel file
-#     file_name = 'scraped.xlsx'
-#     data = pd.read_excel(file_name)
-#
-#     # Extract the first column (A)
-#     column_a = data.iloc[:, 0]
-#
-#     print(column_a)
-# except:
-#     print(f"Failure")
+# Fetch S&P 500 constituents from Wikipedia
+url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+headers = {'User-Agent': 'Mozilla/5.0'}  # Avoid 403 Forbidden error
 
-# List of S&P 500 companies (tickers)
-companies = ["MMM", "AOS", "ABT", "ABBV", "ACN", "ADBE", "AMD", "AES", "AFL", "A"]
+try:
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()
 
-# Define the date range
+    # Parse HTML with BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Find the first wikitable (constituents table)
+    table = soup.find('table', {'class': 'wikitable'})
+
+    # Extract ticker symbols from first column
+    tickers = []
+    for row in table.find_all('tr')[1:]:  # Skip header row
+        cols = row.find_all('td')
+        if len(cols) > 0:
+            ticker = cols[0].text.strip()
+            tickers.append(ticker)
+
+except requests.exceptions.RequestException as e:
+    print(f"Failed to fetch Wikipedia page: {e}")
+    tickers = []
+
+# Define date range and parameters
 start_date = "2020-01-01"
 end_date = "2025-04-04"
-
-# Create an empty DataFrame to store all data
 all_data = pd.DataFrame()
+# DELAY_RANGE = (0.5, 2)  # Seconds between requests
 
-# Loop through each company ticker
-for company in companies:
+# Download historical data for each ticker
+for i, ticker in enumerate(tickers, 1):
     try:
-        # Download historical data for the company
-        data = yf.download(company, start=start_date, end=end_date)
+        # Clean ticker symbols
+        clean_ticker = ticker.replace('.', '-')
 
-        # Add a column for the company ticker
-        data['Company'] = company
+        # Download data with progress disabled
+        data = yf.download(
+            clean_ticker,
+            start=start_date,
+            end=end_date,
+            progress=False
+        )
 
-        # Append the company's data to the main DataFrame
+        # Add company identifier
+        data['Ticker'] = clean_ticker
+
+        # Append to main dataframe
         all_data = pd.concat([all_data, data])
 
-        print(f"Data fetched for {company}")
+        print(f"({i}/{len(tickers)}) Success: {clean_ticker} | Rows: {len(data)}")
+
+        # Random delay to avoid rate limiting
+        # time.sleep(random.uniform(*DELAY_RANGE))
+
     except Exception as e:
-        print(f"Failed to fetch data for {company}: {e}")
+        print(f"({i}/{len(tickers)}) Failed: {ticker} | Error: {str(e)[:50]}")
 
-# Save the combined data to a CSV file
-all_data.to_csv("s&p500_individual_companies.csv")
-
-print("All data saved to s&p500_individual_companies.csv")
+# Save results
+if not all_data.empty:
+    all_data.to_csv("sp500_full_dataset.csv")
+    print(f"Data saved for {len(tickers)} companies")
+else:
+    print("No data collected")
