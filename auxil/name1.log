@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.3.27)  26 APR 2025 21:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2025.3.27)  26 APR 2025 21:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**./main.tex
-(main.tex
+**./name1.tex
+(name1.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (IEEEtran.cls
@@ -1103,21 +1103,6 @@ File: listings.cfg 2024/09/23 1.10c listings configuration
 ))
 Package: listings 2024/09/23 1.10c (Carsten Heinz)
 
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\fontawesome
-5.sty
-Package: fontawesome5 2022/05/02 v5.15.4 Font Awesome 5
-
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xparse
-.sty
-Package: xparse 2024-08-16 L3 Experimental document command parser
-)
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\fontawesome
-5-generic-helper.sty
-Package: fontawesome5-generic-helper 2022/05/02 v5.15.4 non-uTeX helper for fon
-tawesome5
-
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\fontawesome
-5-mapping.def)))
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlibr
 arypgfplots.dateplot.code.tex
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfcalenda
@@ -1138,28 +1123,29 @@ File: pgfcalendar.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@cal@easter@julianday=\count392
 )))
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 41.
- (D:/University\Year 3 Semester 1\Wallstreetbets\auxil\main.aux)
-\openout1 = `main.aux'.
+h' as default language. on input line 34.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 41.
-LaTeX Font Info:    ... okay on input line 41.
+No file name1.aux.
+\openout1 = `name1.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 34.
+LaTeX Font Info:    ... okay on input line 34.
 -- Lines per column: 56 (exact).
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mki
@@ -1187,11 +1173,9 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 g
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring OFF on input line 41.
- (D:/University\Year 3 Semester 1\Wallstreetbets\auxil\main.out)
-(D:/University\Year 3 Semester 1\Wallstreetbets\auxil\main.out)
+Package hyperref Info: Link coloring OFF on input line 34.
 \@outlinefile=\write4
-\openout4 = `main.out'.
+\openout4 = `name1.out'.
 
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\trans
@@ -1200,7 +1184,7 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 41.
+or `english'. on input line 34.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -1211,12 +1195,12 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 \c@lstlisting=\count399
 
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 84.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 84.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
 
 
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1224,15 +1208,15 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 LaTeX Warning: Citation `peterson2009neural' on page 1 undefined on input line 
-95.
+88.
 
 
 LaTeX Warning: Citation `baldominos2018identifying' on page 1 undefined on inpu
-t line 95.
+t line 88.
 
 
 LaTeX Warning: Citation `ngai2011application' on page 1 undefined on input line
- 97.
+ 90.
 
 
 
@@ -1242,27 +1226,31 @@ r/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 ]
 
-LaTeX Warning: Citation `wu2021deep' on page 2 undefined on input line 99.
+LaTeX Warning: Citation `wu2021deep' on page 2 undefined on input line 92.
 
 
-LaTeX Warning: Citation `kou2014multiple' on page 2 undefined on input line 104
-.
+LaTeX Warning: Citation `markowitz1952portfolio' on page 2 undefined on input l
+ine 95.
+
+
+LaTeX Warning: Citation `kou2014multiple' on page 2 undefined on input line 97.
+
 
 
 LaTeX Warning: Citation `chen2017application' on page 2 undefined on input line
- 106.
+ 99.
 
 
-LaTeX Warning: Citation `du2019machine' on page 2 undefined on input line 108.
+LaTeX Warning: Citation `du2019machine' on page 2 undefined on input line 101.
 
 
-LaTeX Warning: Citation `yao2018deep' on page 2 undefined on input line 108.
+LaTeX Warning: Citation `yao2018deep' on page 2 undefined on input line 101.
 
 
-LaTeX Warning: Citation `cheng2019big' on page 2 undefined on input line 113.
+LaTeX Warning: Citation `cheng2019big' on page 2 undefined on input line 106.
 
 
-LaTeX Warning: Citation `wang2002real' on page 2 undefined on input line 115.
+LaTeX Warning: Citation `wang2002real' on page 2 undefined on input line 108.
 
 
 
@@ -1270,27 +1258,27 @@ LaTeX Warning: Citation `wang2002real' on page 2 undefined on input line 115.
 
 [2]
 
-LaTeX Warning: File `agent_performance.jpg' not found on input line 205.
+LaTeX Warning: File `agent_performance.jpg' not found on input line 198.
 
 
-main.tex:205: Package pdftex.def Error: File `agent_performance.jpg' not found:
- using draft setting.
+name1.tex:198: Package pdftex.def Error: File `agent_performance.jpg' not found
+: using draft setting.
 
 See the pdftex.def package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.205 ...dth=\columnwidth]{agent_performance.jpg}}
+l.198 ...dth=\columnwidth]{agent_performance.jpg}}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 2
-05.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 1
+98.
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 1997) in paragraph at lines 224--225
+Underfull \hbox (badness 1997) in paragraph at lines 217--218
  \OT1/ptm/m/it/10 1) Prop-erty Val-u-a-tion Model Train-ing: [][][] \OT1/ptm/m/
 n/10 The val-u-a-tion
  []
@@ -1301,77 +1289,77 @@ n/10 The val-u-a-tion
 
 [3]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2
-61.
+54.
  (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 270.
+            Default family used instead on input line 263.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 270.
+            Default family used instead on input line 263.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 270.
+            Default family used instead on input line 263.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 270.
+            Default family used instead on input line 263.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 279.
+            Default family used instead on input line 272.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 279.
+            Default family used instead on input line 272.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 279.
+            Default family used instead on input line 272.
 LaTeX Info: Symbol \textrightarrow not provided by
             font family ptm in TS1 encoding.
-            Default family used instead on input line 279.
+            Default family used instead on input line 272.
 
 
 LaTeX Warning: Reference `tab:model_performance' on page 4 undefined on input l
-ine 317.
+ine 310.
 
 
 
 
-LaTeX Warning: Reference `fig_net_worth' on page 4 undefined on input line 338.
+LaTeX Warning: Reference `fig_net_worth' on page 4 undefined on input line 331.
 
 
 
-LaTeX Warning: Reference `fig_net_worth' on page 4 undefined on input line 377.
+LaTeX Warning: Reference `fig_net_worth' on page 4 undefined on input line 370.
 
 
 
-LaTeX Warning: Reference `fig_properties' on page 4 undefined on input line 379
+LaTeX Warning: Reference `fig_properties' on page 4 undefined on input line 372
 .
 
 
 
 [4]
 
-LaTeX Warning: Reference `fig_cash_flow' on page 5 undefined on input line 419.
+LaTeX Warning: Reference `fig_cash_flow' on page 5 undefined on input line 412.
 
 
 
-Overfull \hbox (8.32869pt too wide) in paragraph at lines 447--448
+Overfull \hbox (8.32869pt too wide) in paragraph at lines 440--441
 [][] 
  []
 
 
-LaTeX Warning: Reference `fig_allocation' on page 5 undefined on input line 454
+LaTeX Warning: Reference `fig_allocation' on page 5 undefined on input line 447
 .
 
-Package pgfplots info on input line 471: Using 'lua backend=false' for axis: st
+Package pgfplots info on input line 464: Using 'lua backend=false' for axis: st
 acked plots unsupported (yet).
 
 LaTeX Warning: Reference `tab:property_performance' on page 5 undefined on inpu
-t line 506.
+t line 499.
 
 
-Overfull \hbox (49.91849pt too wide) in paragraph at lines 511--523
+Overfull \hbox (49.91849pt too wide) in paragraph at lines 504--516
  [] 
  []
 
@@ -1379,11 +1367,11 @@ Overfull \hbox (49.91849pt too wide) in paragraph at lines 511--523
 
 
 LaTeX Warning: Citation `baldominos2018identifying' on page 5 undefined on inpu
-t line 533.
+t line 526.
 
 
 LaTeX Warning: Citation `ngai2011application' on page 5 undefined on input line
- 535.
+ 528.
 
 
 
@@ -1392,159 +1380,144 @@ LaTeX Warning: Citation `ngai2011application' on page 5 undefined on input line
 
 
 [6]
-Underfull \hbox (badness 1924) in paragraph at lines 603--604
+Underfull \hbox (badness 1924) in paragraph at lines 596--597
 \OT1/ptm/m/n/10 cash flow, ap-pre-ci-a-tion po-ten-tial, tax ben-e-fits, and ri
 sk
  []
 
 
 
-** WARNING: Ignoring useless \section in Appendix (line 671).
+** WARNING: Ignoring useless \section in Appendix (line 664).
 (C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2024/09/23 1.10c listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 676.
+nput line 669.
 
-Overfull \hbox (24.0028pt too wide) in paragraph at lines 679--680
+Overfull \hbox (24.0028pt too wide) in paragraph at lines 672--673
 [][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (18.00275pt too wide) in paragraph at lines 680--681
+Overfull \hbox (18.00275pt too wide) in paragraph at lines 673--674
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
 
 [7]
-Overfull \hbox (6.00262pt too wide) in paragraph at lines 703--704
+Overfull \hbox (6.00262pt too wide) in paragraph at lines 696--697
 [][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (12.00269pt too wide) in paragraph at lines 704--705
+Overfull \hbox (12.00269pt too wide) in paragraph at lines 697--698
 [][][][][][][][][][][][][][][][][][] 
  []
 
-** WARNING: Ignoring useless \section in Appendix (line 721).
+** WARNING: Ignoring useless \section in Appendix (line 714).
 
 
-** WARNING: Ignoring useless \section in Appendix (line 778).
-main.tex:782: Missing \endcsname inserted.
+** WARNING: Ignoring useless \section in Appendix (line 771).
+name1.tex:775: Missing \endcsname inserted.
 <to be read again> 
                    \ALG@currentblock@0 
-l.782 \Procedure
+l.775 \Procedure
                 {IdentifyInvestmentOpportunities}{properties, available\_cap...
 The control sequence marked <to be read again> should
 not appear between \csname and \endcsname.
 
-main.tex:782: Extra \endcsname.
+name1.tex:775: Extra \endcsname.
 \ALG@makebeginrepeat ...\ALG@thisblock \endcsname 
                                                   \relax \def \ALG@thisblock...
-l.782 \Procedure
+l.775 \Procedure
                 {IdentifyInvestmentOpportunities}{properties, available\_cap...
 I'm ignoring this, since I wasn't doing a \csname.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 782--783
+Underfull \hbox (badness 10000) in paragraph at lines 775--776
  []\OT1/ptm/b/n/10 pro-ce-dure \OT1/ptm/m/sc/10 Iden-ti-fy-In-vest-men-tOp-por-
 tu-ni-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 783--784
+Underfull \hbox (badness 10000) in paragraph at lines 776--777
  [] \OT1/ptm/m/n/10 max[]price $\OMS/cmsy/m/n/10  $ \OT1/ptm/m/n/10 avail-able[
 ]capital /
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 784--785
+Underfull \hbox (badness 2932) in paragraph at lines 777--778
  [] \OT1/ptm/m/n/10 po-ten-tial[]investments $\OMS/cmsy/m/n/10  $ \OT1/ptm/m/n/
 10 Fil-ter(properties, price $\OMS/cmsy/m/n/10 ^^T$
  []
 
 
-main.tex:790: LaTeX Error: Command \item invalid in math mode.
+name1.tex:783: LaTeX Error: Command \item invalid in math mode.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.790             \State
+l.783             \State
                          opportunities $\gets$ IdentifyInvestmentOpportuniti...
 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-main.tex:790: Missing $ inserted.
+name1.tex:783: Missing $ inserted.
 <inserted text> 
                 $
-l.790             \State
+l.783             \State
                          opportunities $\gets$ IdentifyInvestmentOpportuniti...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-main.tex:790: Display math should end with $$.
+name1.tex:783: Display math should end with $$.
 <to be read again> 
                    \vskip 
-l.790             \State
+l.783             \State
                          opportunities $\gets$ IdentifyInvestmentOpportuniti...
 The `$' that I just saw supposedly matches a previous `$$'.
 So I shall assume that you typed `$$' both times.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 794--795
+Underfull \hbox (badness 10000) in paragraph at lines 787--788
  [] \OT1/ptm/m/n/10 suc-cess $\OMS/cmsy/m/n/10  $ \OT1/ptm/m/n/10 Pur-chase-Pro
 p-
  []
 
-main.tex:805: Missing number, treated as zero.
+name1.tex:798: Missing number, treated as zero.
 <to be read again> 
                    \ALG@b@2@EndWhile@0 
-l.805 \EndWhile
+l.798 \EndWhile
                
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
 
-main.tex:808: Missing number, treated as zero.
+name1.tex:801: Missing number, treated as zero.
 <to be read again> 
                    \ALG@b@2@EndProcedure@0 
-l.808 \EndProcedure
+l.801 \EndProcedure
                    
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
 
 
-main.tex:809: Package algorithmicx Error: Some blocks are not closed!!!.
+name1.tex:802: Package algorithmicx Error: Some blocks are not closed!!!.
 
 See the algorithmicx package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.809 \end{algorithmic}
+l.802 \end{algorithmic}
                        
 This error message was generated by an \errmessage
 command, so I can't give any explicit help.
 Pretend that you're Hercule Poirot: Examine all clues,
 and deduce the truth by order and method.
-
-LaTeX Font Info:    Trying to load font information for U+fontawesomebrands0 on
- input line 811.
-
-(C:\Users\User\AppData\Local\Programs\MiKTeX\tex/latex/fontawesome5\ufontawesom
-ebrands0.fd)
-LaTeX Font Info:    Font shape `U/fontawesomebrands0/solid/n' in size <10> not 
-available
-(Font)              Font shape `U/fontawesomebrands0/regular/n' tried instead o
-n input line 811.
-
-Overfull \hbox (1.62695pt too wide) in paragraph at lines 811--813
-[][]\U/fontawesomebrands0/regular/n/10 ¬[] \OT1/ptm/m/n/10 Github Link: https:/
-/github.com/Chhat2206/Wallstreetbets 
- []
 
 
 ** Conference Paper **
@@ -1559,8 +1532,7 @@ Before submitting the final camera ready copy, remember to:
 
 
 
-[8{C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/fontawesome5/fa5
-brands0.enc}] (D:/University\Year 3 Semester 1\Wallstreetbets\auxil\main.aux)
+[8] (D:/University\Year 3 Semester 1\Wallstreetbets\auxil\name1.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1573,50 +1545,40 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 
-Package rerunfilecheck Warning: File `main.out' has changed.
+Package rerunfilecheck Warning: File `name1.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 86471AA8F731628063C6B9AC1A2425B0;7856
+Package rerunfilecheck Info: Checksums for `name1.out':
+(rerunfilecheck)             Before: <no file>
 (rerunfilecheck)             After:  0E411F1D93E06D4DCF0145FDB85FDD18;9536.
  ) 
 Here is how much of TeX's memory you used:
- 44516 strings out of 473530
- 1042727 string characters out of 5715278
- 1724335 words of memory out of 5000000
- 66948 multiletter control sequences out of 15000+600000
- 603014 words of font info for 129 fonts, out of 8000000 for 9000
+ 41348 strings out of 473530
+ 972452 string characters out of 5715278
+ 1675907 words of memory out of 5000000
+ 63807 multiletter control sequences out of 15000+600000
+ 602693 words of font info for 128 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,19n,93p,1240b,2650s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{section*.7} has been referenced but does not exist,
- replaced by a fixed one
-
-
-pdfTeX warning (dest): name{section*.6} has been referenced but does not exist,
- replaced by a fixed one
-
- <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm100
-0.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/fontawesom
-e5/FontAwesome5Brands-Regular.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/User/AppData/Local/Programs
-/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/User/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/User/AppData
-/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users
-/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
-C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy
-7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr
-8a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8
-a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8
-a.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a
-.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a
-.pfb>
-Output written on "D:/University\Year 3 Semester 1\Wallstreetbets\out\main.pdf"
- (8 pages, 254796 bytes).
+ 84i,19n,93p,1241b,2650s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\User\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1
+000.pk><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmex10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmmi10.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmmi7.pfb><C:/Users/User/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/User/AppData/Local/Programs/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/User/AppData/Local/Program
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/User/AppData/Local
+/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/User/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/User/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/User/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/User/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/User/AppData
+/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "D:/University\Year 3 Semester 1\Wallstreetbets\out\name1.pdf
+" (8 pages, 217258 bytes).
 PDF statistics:
- 439 PDF objects out of 1000 (max. 8388607)
- 167 named destinations out of 1000 (max. 500000)
- 357 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 299 PDF objects out of 1000 (max. 8388607)
+ 165 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

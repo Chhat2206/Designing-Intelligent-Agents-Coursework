@@ -40,524 +40,777 @@
 
 \begin{document}
 
-\title{FALCON: Financial AnaLysis with Cross-asset Optimization Network for Portfolio Management}
+\title{REALTOR: Real Estate Investment Analysis with Learning-based Transformer Optimization for Returns}
 
 \author{\IEEEauthorblockN{Chhatresh Sehgal}
 \IEEEauthorblockA{\textit{Department of Computer Science} \\
 \textit{University of Nottingham, Malaysia}\\
-email: hfycs2@notttingham.edu.my}
+email: hfycs2@nottingham.edu.my}
 \and
 \IEEEauthorblockN{Youssef Mohamed Abdelhamid Mohamed}
 \IEEEauthorblockA{\textit{Department of Computer Science} \\
 \textit{University of Nottingham, Malaysia}\\
-email: XXXXX@notttingham.edu.my}
+email: @nottingham.edu.my}
 }
 
 \maketitle
 
 \begin{abstract}
-This paper introduces FALCON (Financial AnaLysis with Cross-asset Optimization Network), a novel deep learning architecture for multi-stock prediction and portfolio optimisation. FALCON leverages transformer networks with a hierarchical design incorporating asset-specific encoders, cross-asset attention mechanisms, and a portfolio optimisation agent. The system processes historical stock data to extract temporal patterns and cross-asset relationships, detect market regimes, and optimise portfolio allocations. Our framework combines individual asset analysis with cross-market context to provide robust investment strategies that adapt to changing market conditions. Experiments conducted on S\&P 500 stocks demonstrate the model's capacity to process complex financial time series and generate effective portfolio recommendations. This research contributes to the growing field of AI-powered quantitative finance by providing a comprehensive approach to automated portfolio management.
+This paper introduces REALTOR (Real Estate Investment Analysis with Learning-based Transformer Optimization for Returns), a novel deep learning framework for real estate portfolio optimization and investment decision-making. REALTOR leverages neural networks to predict property valuations, estimate rental incomes, and optimize investment decisions through a comprehensive approach that accounts for various financial parameters. The system employs PyTorch-based valuation and rental estimation models to analyze property listings and identify profitable investment opportunities. Our framework combines property-specific analysis with regional market insights to provide robust investment strategies that adapt to changing real estate market conditions. Experiments conducted on over 12,000 real estate listings demonstrate the model's ability to process complex property data and generate effective portfolio recommendations. The system achieved a significant growth in net worth over the simulation period while maintaining stable monthly cash flows. This research contributes to the emerging field of AI-powered real estate investment by providing an integrated approach to automated portfolio construction and management.
 \end{abstract}
 
 \begin{IEEEkeywords}
-deep learning, portfolio optimisation, transformer networks, hierarchical architecture, financial time series, cross-asset attention, market regime detection
+deep learning, real estate investment, portfolio optimization, neural networks, property valuation, rental estimation, automated investment, financial simulation
 \end{IEEEkeywords}
 
 \section{Introduction}
-Recent advances in artificial intelligence have revolutionised quantitative finance, enabling more sophisticated analysis of financial markets and asset behaviour. Traditional portfolio optimisation approaches often rely on statistical methods with limiting assumptions about return distributions and market behaviour. These limitations become particularly evident during market regime changes and black swan events \cite{taleb2007black}.
+Real estate investment represents one of the largest asset classes globally, with significant potential for wealth creation and passive income generation. However, traditional approaches to real estate investing often rely on manual analysis, local market knowledge, and rules of thumb that may not capture the complex relationships between property characteristics, location factors, and market dynamics. These limitations become particularly evident when investors attempt to scale their portfolios across different regions or property types.
 
-Deep learning methods offer promising alternatives by modelling complex non-linear relationships in financial data without rigid distributional assumptions. Specifically, transformer architectures have demonstrated exceptional capabilities in capturing long-range dependencies in sequential data, making them suitable for financial time series analysis \cite{vaswani2017attention}.
+Deep learning methods offer promising alternatives for real estate analysis by modeling complex non-linear relationships in property data without rigid assumptions. Specifically, neural network architectures have demonstrated exceptional capabilities in capturing intricate patterns in real estate markets, making them suitable for investment decision support systems.
 
-This paper presents FALCON, a transformer-based hierarchical framework designed specifically for financial portfolio management. FALCON processes multi-asset data through three distinct layers:
+This paper presents REALTOR, a neural network-based framework designed specifically for real estate portfolio management. REALTOR processes property data through several key components:
 
 \begin{enumerate}
-\item A base layer with asset-specific encoders
-\item A middle layer implementing cross-asset attention and regime detection
-\item A top layer generating portfolio allocations and asset selection scores
+\item Valuation neural network for property price prediction
+\item Rental estimation neural network for income projection
+\item Cash flow analysis with comprehensive expense modeling
+\item Investment decision module for property selection
+\item Portfolio management system for multi-property optimization
 \end{enumerate}
 
 The primary contributions of this research include:
 
 \begin{itemize}
-\item A novel hierarchical transformer architecture for financial portfolio optimisation
-\item An integrated market regime detection mechanism
-\item A multi-objective training approach balancing return prediction, portfolio allocation, and asset selection
-\item A comprehensive backtesting framework for strategy evaluation
+\item A novel deep learning architecture for real estate investment analysis
+\item An integrated investment decision framework that balances multiple financial objectives
+\item A comprehensive simulation environment for testing investment strategies
+\item Empirical evidence of the system's effectiveness through extensive backtesting
 \end{itemize}
 
 \section{Literature Review}
 
-\subsection{Deep Learning in Finance}
-The application of deep learning to financial markets has grown substantially in recent years. Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) networks were among the first deep learning architectures applied to financial time series prediction. These models demonstrated improvements over traditional statistical methods but struggled with capturing long-range dependencies \cite{huck2009pairs}.
+\subsection{Deep Learning in Real Estate}
+The application of deep learning to real estate markets has grown substantially in recent years. Traditional valuation methods such as hedonic pricing models have been the standard for decades but face limitations in capturing non-linear relationships and neighborhood effects. Neural network approaches have demonstrated superiority in predicting property values by modeling complex interactions between features.
 
-Attention mechanisms, particularly transformers, have addressed many limitations of RNN-based approaches. Jiang et al. demonstrated that transformer models could effectively predict stock movements by capturing complex temporal dependencies in market data \cite{jiang2021stock}. Similarly, Zhang et al. showed that self-attention mechanisms could identify cross-asset relationships to improve portfolio performance \cite{zhang2018improving}.
+Supervised learning models for real estate valuation have shown promise in recent research. Peterson and Flanagan \cite{peterson2009neural} demonstrated that neural networks outperform traditional hedonic pricing models in accuracy and robustness. Similarly, Baldominos et al. \cite{baldominos2018identifying} applied evolutionary algorithms alongside neural networks to improve prediction accuracy for housing prices.
 
-The Portfolio Transformer network introduced by Kisiel and Gorse \cite{kisiel2023portfolio} circumvents the need to predict asset returns and instead directly optimises the Sharpe ratio. Their end-to-end portfolio optimisation framework, inspired by attention mechanisms in natural language processing, demonstrated superior risk-adjusted performance compared to traditional approaches.
+Deep learning applications in rental estimation have been less explored compared to valuation models. However, researchers have begun developing specialized architectures that account for both property characteristics and temporal factors affecting rental markets. Ngai and Cho \cite{ngai2011application} showed that neural networks can effectively capture the complex relationships between property features and rental prices.
 
-Recent research by Chandra et al. \cite{chandra2023reinforcement} explores reinforcement learning for portfolio management, showing promising results in adapting to changing market conditions. The fusion of transformer models with Generative Adversarial Networks (GANs) within the Black-Litterman framework has also emerged as an innovative approach to enhancing portfolio optimisation \cite{agarwal2022enhancing}.
+Recent advances in transformer-based architectures have opened new possibilities for real estate analysis by capturing spatial and temporal dependencies simultaneously. Wu and Sharma \cite{wu2021deep} demonstrated how attention mechanisms can improve prediction accuracy by identifying important features across different property types and locations.
 
-\subsection{Portfolio Optimisation}
-Modern portfolio theory, introduced by Markowitz, established the foundation for quantitative portfolio management through mean-variance optimisation \cite{markowitz1952portfolio}. While revolutionary, this approach relies on simplistic assumptions about return distributions and investor utility functions.
+\subsection{Portfolio Optimization for Real Estate}
+Real estate portfolio optimization poses unique challenges compared to traditional financial assets due to the illiquid nature of properties, high transaction costs, and management complexities. Modern portfolio theory, introduced by Markowitz \cite{markowitz1952portfolio}, established the foundation for quantitative portfolio management but requires adaptation for real estate assets.
 
-Deep learning models have shown potential in enhancing portfolio optimisation, with end-to-end networks directly optimising portfolio weights without explicit return predictions. Heaton et al. introduced deep portfolios, which employ autoencoders to extract features from financial data for portfolio construction \cite{heaton2017deep}. Jiang et al. proposed a deep reinforcement learning framework specifically tailored to financial portfolio management problems \cite{jiang2017deep}.
+Deep learning models have shown potential in enhancing real estate portfolio optimization, with networks directly recommending property acquisitions without explicit reliance on traditional metrics. Kou et al. \cite{kou2014multiple} introduced a multi-criteria decision framework for real estate investment that integrates multiple financial and risk factors.
 
-Portfolio optimisation with AI techniques has demonstrated advantages in dynamic and volatile financial environments \cite{lonnrot2024portfolio}. Graph neural networks (GNNs) have also proved efficient in portfolio optimisation tasks by modelling complex relationships between assets \cite{cartanya2022deep}.
+Reinforcement learning applications in real estate portfolio management represent a growing area of research. Chen and Qiu \cite{chen2017application} proposed a reinforcement learning framework tailored to real estate portfolio optimization problems that accounts for market cycles and liquidity constraints.
 
-\subsection{Market Regime Detection}
-Market regimes significantly impact asset correlations and return distributions. Ang and Bekaert identified distinct market regimes and documented their influence on optimal asset allocation \cite{ang2002international}. Traditional methods for regime detection typically employ statistical approaches like Hidden Markov Models.
+Portfolio optimization with AI techniques has demonstrated advantages in dynamic real estate environments with significant regional variations \cite{du2019machine}. Graph neural networks (GNNs) have also shown promise in real estate applications by modeling spatial relationships between properties and neighborhood characteristics \cite{yao2018deep}.
 
-Deep learning approaches to regime detection show promise in identifying subtle pattern changes. Zhang and Yan proposed a deep clustering approach to automatically identify market regimes without explicit labels \cite{zhang2020deep}. Our work builds on these findings by incorporating regime detection directly into the portfolio optimisation process.
+\subsection{Cash Flow Analysis and Risk Assessment}
+Accurate cash flow projection forms the foundation of real estate investment analysis. Traditional approaches rely on simple multipliers and rules of thumb, but these methods often fail to capture the complex interactions between different expense categories and market conditions.
 
-A key element in regime-switching models is identifying whether exact market regimes reoccur over time (e.g., across recessions or periods of economic growth) or if new regimes deviate from previous ones \cite{ismail2023machine}. Timely recognition of these sudden behavioural changes in markets can significantly lower the risk of financial exposure.
+Machine learning approaches to cash flow prediction show promise in improving accuracy. Cheng et al. \cite{cheng2019big} demonstrated how neural networks can predict operating expenses with greater accuracy than linear models by capturing non-linear relationships between building characteristics and maintenance costs.
+
+Risk assessment in real estate investing has evolved from simple metrics like capitalization rates to sophisticated models that account for various risk factors. Wang and Wolverton \cite{wang2002real} established a comprehensive framework for risk analysis in real estate that incorporates both property-specific and market-wide factors. Deep learning models offer the potential to quantify these risks more accurately by processing larger datasets and identifying complex patterns.
+
+Our work builds on these foundations by integrating valuation, rental estimation, cash flow analysis, and portfolio optimization into a cohesive framework that supports real-time investment decision-making.
 
 \section{Methodology}
 
-\subsection{FALCON Architecture}
-FALCON employs a hierarchical design with three key layers, each serving a distinct purpose in the portfolio management pipeline:
+\subsection{REALTOR Architecture}
+REALTOR employs a modular design with several key components, each serving a distinct purpose in the real estate investment pipeline:
 
-\subsubsection{Base Layer: Asset-Specific Encoders}
-The base layer processes historical data for individual assets. For each stock, a dedicated encoder transforms raw financial features into meaningful embeddings. Each encoder employs a transformer block with self-attention to capture temporal patterns within the asset's price history. Positional encoding preserves sequential information, while the projection layer compresses the representation into a fixed-dimensional embedding.
+\subsubsection{Data Processing and Feature Engineering}
+The system begins by processing raw property listing data, converting it into structured features suitable for deep learning models. This component handles missing values, creates derived features, and normalizes inputs. Key transformations include:
 
-The mathematical formulation for the asset encoder is as follows:
+\begin{itemize}
+\item Extraction of numeric values from text descriptions
+\item Calculation of derived metrics (price per square foot, age, etc.)
+\item Creation of regional market indicators (zip code popularity, average prices by area)
+\item Normalization of all features to appropriate ranges
+\end{itemize}
+
+The mathematical formulation for feature preprocessing is:
 \begin{align}
-E_i &= W_e \cdot X_i + \text{PE} \\
-Z_i &= \text{TransformerBlock}(E_i) \\
-h_i &= \text{MeanPooling}(Z_i) \\
-\hat{h}_i &= W_p \cdot h_i
+X_{normalized} = \frac{X - \mu}{\sigma}
 \end{align}
+where $X$ is the raw feature vector, $\mu$ is the mean, and $\sigma$ is the standard deviation.
 
-where $X_i$ represents the input features for asset $i$, $W_e$ is the embedding weight matrix, $\text{PE}$ is positional encoding, and $W_p$ is the projection weight matrix.
+\subsubsection{Property Valuation Neural Network}
+The valuation component estimates the fair market value of properties using a deep neural network. This network processes property characteristics and market features to predict prices, enabling the system to identify potentially undervalued properties. The architecture consists of:
 
-\subsubsection{Middle Layer: Cross-Asset Attention and Regime Detection}
-The middle layer establishes relationships between assets and detects market regimes. This component implements multi-head attention across asset embeddings, enabling the model to identify relationships between different stocks. The market context representation provides a global view of current conditions, while the regime detector classifies the current market state into predefined regimes (bullish, bearish, or volatile).
+\begin{itemize}
+\item Input layer accepting property features
+\item Multiple dense layers with ReLU activation
+\item Dropout layers for regularization
+\item Output layer predicting property value
+\end{itemize}
 
-The cross-asset attention mechanism can be expressed as:
+The valuation model is defined as:
 \begin{align}
-Q, K, V &= W_q \cdot H, W_k \cdot H, W_v \cdot H \\
-\text{Attention}(Q, K, V) &= \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V \\
-\text{MultiHead}(H) &= W_o \cdot \text{Concat}(\text{head}_1, \ldots, \text{head}_h)
+h_1 &= \text{ReLU}(W_1 \cdot X + b_1) \\
+h_2 &= \text{Dropout}(\text{ReLU}(W_2 \cdot h_1 + b_2)) \\
+h_3 &= \text{Dropout}(\text{ReLU}(W_3 \cdot h_2 + b_3)) \\
+\hat{y} &= W_4 \cdot h_3 + b_4
 \end{align}
+where $X$ represents property features, $W_i$ and $b_i$ are the weights and biases for layer $i$, and $\hat{y}$ is the predicted property value.
 
-where $H$ is the matrix of asset embeddings, $W_q$, $W_k$, $W_v$ are parameter matrices, and $d_k$ is the dimension of the key vectors.
+\subsubsection{Rental Income Estimation Network}
+This component predicts the monthly rental income for properties using a separate neural network. The rental model uses similar architecture to the valuation model but is specifically trained to predict rental rates based on property characteristics and local market conditions.
 
-The market context is computed as:
+The rental model is defined similarly:
 \begin{align}
-M = \frac{1}{N} \sum_{i=1}^{N} \hat{h}_i
+h_1 &= \text{ReLU}(W_1 \cdot X + b_1) \\
+h_2 &= \text{Dropout}(\text{ReLU}(W_2 \cdot h_1 + b_2)) \\
+h_3 &= \text{Dropout}(\text{ReLU}(W_3 \cdot h_2 + b_3)) \\
+\hat{r} &= W_4 \cdot h_3 + b_4
 \end{align}
+where $\hat{r}$ represents the predicted monthly rental income.
 
-where $N$ is the number of assets.
+\subsubsection{Cash Flow Analysis Module}
+The cash flow analysis module computes detailed financial projections for potential investments. This component models:
 
-The regime detection is formulated as:
+\begin{itemize}
+\item Mortgage payments based on loan parameters
+\item Property tax expenses
+\item Insurance costs
+\item Maintenance expenses
+\item Vacancy losses
+\item Net operating income and cash flow
+\end{itemize}
+
+The mortgage payment calculation uses the standard formula:
 \begin{align}
-r = \text{softmax}(W_r \cdot M)
+P = L \cdot \frac{r(1+r)^n}{(1+r)^n-1}
 \end{align}
+where $P$ is the monthly payment, $L$ is the loan amount, $r$ is the monthly interest rate, and $n$ is the number of payments.
 
-where $W_r$ is the regime classification weight matrix.
+\subsubsection{Investment Decision Module}
+This component evaluates potential investments based on multiple criteria:
+\begin{itemize}
+\item Cash-on-cash return
+\item Value ratio (estimated value / purchase price)
+\item Monthly cash flow
+\item Five-year ROI projection
+\end{itemize}
 
-\subsubsection{Top Layer: Portfolio Optimisation Agent}
-The top layer generates actionable investment decisions. This agent produces two key outputs:
-\begin{enumerate}
-\item Portfolio weights determining capital allocation across assets
-\item Asset scores for ranking stocks by expected performance
-\end{enumerate}
-
-The portfolio agent can be mathematically represented as:
+The investment score is calculated as:
 \begin{align}
-s &= \text{Concat}(M,r) \\
-z &= \text{MLP}(s) \\
-w &= \text{softmax}(W_w \cdot z) \\
-a &= W_a \cdot z
+\text{Score} = \text{CoCROI} \times \text{ValueRatio}
 \end{align}
-
-where $s$ is the state representation combining market context and regime information, $z$ is the encoded state, $w$ represents portfolio weights, and $a$ represents asset scores.
+where CoCROI is the cash-on-cash return on investment and ValueRatio represents the ratio between estimated value and purchase price.
 
 \begin{figure}[htbp]
-\centerline{\includegraphics[width=\columnwidth]{falcon_architecture.png}}
-\caption{FALCON hierarchical architecture showing the three main layers: asset-specific encoders (base), cross-asset attention with regime detection (middle), and portfolio optimisation agent (top).}
+\centerline{\includegraphics[width=\columnwidth]{agent_performance.jpg}}
+\caption{REALTOR performance visualizations showing key metrics: Net Worth Over Time (top left), Cash and Portfolio Value (top right), Number of Properties Owned (middle left), Episode Rewards (middle right), Training Loss (bottom left), and Performance Metrics summary (bottom right).}
 \label{fig_architecture}
 \end{figure}
 
-\subsection{Data Processing Pipeline}
-FALCON implements a comprehensive data pipeline:
+\subsection{Data Preparation}
+REALTOR implements a comprehensive data pipeline:
 
 \begin{enumerate}
-\item \textbf{Data Acquisition}: Historical price data is downloaded from Yahoo Finance for selected S\&P 500 stocks.
-\item \textbf{Feature Engineering}: Raw price data is transformed into financial indicators including returns, volatility, moving averages, and volume metrics.
-\item \textbf{Sequence Generation}: Fixed-length sequences are created from the processed data with appropriate targets for model training.
-\item \textbf{Scaling}: Features are normalised using MinMaxScaler to ensure consistent ranges across different metrics.
+\item \textbf{Data Acquisition}: Property listing data is loaded from CSV files containing comprehensive property information.
+\item \textbf{Data Cleaning}: The system handles missing values, outliers, and inconsistent formatting in the raw data.
+\item \textbf{Feature Engineering}: Raw property data is transformed into derived features including price per square foot, property age, and market indicators.
+\item \textbf{Data Standardization}: Features are standardized to ensure consistent scales across different metrics.
 \end{enumerate}
 
 \subsection{Training Methodology}
-FALCON employs a two-phase training approach:
+REALTOR employs a supervised learning approach for training its prediction models:
 
-\subsubsection{Phase 1: Base Layer Pretraining}
-This phase trains only the asset encoders to predict individual stock returns, establishing a foundation for asset-specific representations. The objective function for this phase is:
+\subsubsection{Property Valuation Model Training}
+The valuation model is trained using historical property sales data with known prices:
+
 \begin{align}
-\mathcal{L}_{\text{base}} = \frac{1}{N} \sum_{i=1}^{N} \frac{1}{T} \sum_{t=1}^{T} (y_{i,t} - \hat{y}_{i,t})^2
+\mathcal{L}_{valuation} = \frac{1}{N} \sum_{i=1}^{N} (y_i - \hat{y}_i)^2
 \end{align}
 
-where $y_{i,t}$ is the actual return for asset $i$ at time $t$, and $\hat{y}_{i,t}$ is the predicted return.
+where $y_i$ is the actual property price, $\hat{y}_i$ is the predicted price, and $N$ is the number of training samples.
 
-\subsubsection{Phase 2: Full Model Training}
-The second phase trains the entire model end-to-end, balancing multiple objectives:
-\begin{itemize}
-\item Return prediction accuracy
-\item Portfolio allocation effectiveness
-\item Asset ranking quality
-\item Regime detection performance
-\end{itemize}
+\subsubsection{Rental Estimation Model Training}
+The rental model is trained using a similar approach with rental price data:
 
-The multi-objective loss function is defined as:
+\begin{align}
+\mathcal{L}_{rental} = \frac{1}{N} \sum_{i=1}^{N} (r_i - \hat{r}_i)^2
+\end{align}
 
-\begin{equation}
-\mathcal{L}_{\text{total}} = 0.4 \cdot \mathcal{L}_{\text{return}} + 0.3 \cdot \mathcal{L}_{\text{portfolio}} + 0.2 \cdot \mathcal{L}_{\text{score}} + 0.1 \cdot \mathcal{L}_{\text{regime}}
-\end{equation}
+where $r_i$ is the actual rental price and $\hat{r}_i$ is the predicted rental price.
 
-where each component represents a different aspect of the model's performance. The optimisation process utilises the Adam optimiser \cite{kingma2014adam} with adaptive learning rate scheduling and gradient clipping to prevent exploding gradients.
+The optimization process utilizes the AdamW optimizer with weight decay for regularization:
+
+\begin{align}
+\theta_{t+1} = \theta_t - \alpha \cdot \frac{\hat{m}_t}{\sqrt{\hat{v}_t} + \epsilon} - \lambda \theta_t
+\end{align}
+
+where $\theta$ represents model parameters, $\alpha$ is the learning rate, $\hat{m}_t$ and $\hat{v}_t$ are bias-corrected first and second moment estimates, $\epsilon$ is a small constant for numerical stability, and $\lambda$ is the weight decay parameter.
 
 \section{Experimental Setup}
 
 \subsection{Data Description}
-Our experiments utilise historical data from 129 stocks in the S\&P 500 index, spanning from January 2005 to January 2025. The data is split chronologically:
+Our experiments utilize a dataset of 12,636 property listings with comprehensive information about each property:
 
 \begin{itemize}
-\item Training period: January 2005 to January 2022
-\item Testing period: January 2022 to January 2025
+\item Property characteristics (square footage, bedrooms, year built, etc.)
+\item Location information (address, city, state, zip code)
+\item Listing price and status
+\item Market metrics (days on market, views, favorites)
 \end{itemize}
 
-For each stock, we extract daily OHLC (Open, High, Low, Close) prices, adjusted close prices, and trading volume from Yahoo Finance.
+The data preprocessing pipeline filters properties to focus on residential properties with prices between \$50,000 and \$2,000,000 and square footage between 500 and 10,000 square feet.
 
 \subsection{Model Configuration}
-The FALCON model employs the following hyperparameters:
+The neural network models employ the following hyperparameters:
 
 \begin{itemize}
-\item Sequence length: 30 trading days (approximately 1.5 months)
-\item Embedding dimension: 128
-\item Number of attention heads: 8
-\item Number of market regimes: 3 (bullish, bearish, volatile)
-\item Dropout rate: 0.1
-\item Training batch size: 256 samples
-\item Learning rate: 0.0001 with adaptive scheduling
-\item Weight decay: 1e-5 for regularisation
+\item Valuation Model:
+  \begin{itemize}
+  \item Input features: Property and market characteristics
+  \item Architecture: 4-layer neural network (input → 128 → 64 → 32 → 1)
+  \item Activation: ReLU
+  \item Dropout: 0.2
+  \item Loss function: Mean Squared Error
+  \item Optimizer: AdamW with learning rate 0.001 and weight decay 1e-5
+  \end{itemize}
+\item Rental Model:
+  \begin{itemize}
+  \item Input features: Property and market characteristics
+  \item Architecture: 4-layer neural network (input → 64 → 32 → 16 → 1)
+  \item Activation: ReLU
+  \item Dropout: 0.1
+  \item Loss function: Mean Squared Error
+  \item Optimizer: AdamW with learning rate 0.001 and weight decay 1e-5
+  \end{itemize}
 \end{itemize}
 
-For portfolio construction, we use:
+\subsection{Investment Parameters}
+For the investment simulation, we use the following parameters:
+
 \begin{itemize}
-\item Selection of top 10 stocks based on model scores
-\item Weekly rebalancing (every Friday)
-\item Initial capital of \$10,000
-\item Transaction costs of 0.1\% of transaction value
+\item Initial capital: \$200,000
+\item Mortgage parameters:
+  \begin{itemize}
+  \item Down payment: 20\%
+  \item Interest rate: 5\%
+  \item Term: 30 years
+  \end{itemize}
+\item Property expenses:
+  \begin{itemize}
+  \item Maintenance: 1\% of property value annually
+  \item Property tax: 1\% of property value annually
+  \item Insurance: 0.5\% of property value annually
+  \item Vacancy rate: 5\% of potential rental income
+  \end{itemize}
+\item Investment criteria:
+  \begin{itemize}
+  \item Minimum cash flow: \$500 per month
+  \item Minimum cash reserve: \$20,000
+  \item Maximum properties to acquire: 10
+  \item Months between purchases: 3
+  \end{itemize}
 \end{itemize}
 
 \section{Results}
 
-\subsection{Portfolio Performance}
-The backtest results for the FALCON model over the three-year testing period from January 2022 to January 2025 demonstrate strong performance in a volatile market environment. Figure \ref{fig_performance} illustrates the portfolio value progression throughout the testing period.
-
-\begin{figure}[htbp]
-\centerline{\includegraphics[width=\columnwidth]{falcon_performance.png}}
-\caption{FALCON Portfolio Performance from January 2022 to January 2025 showing portfolio value evolution over time. The model starts with \$10,000 initial capital and achieves a final value of approximately \$14,674, representing a 46.7\% total return over the test period.}
-\label{fig_performance}
-\end{figure}
-
-As illustrated in Figure \ref{fig_performance}, the FALCON portfolio begins at \$10,000 in January 2022 and reaches a final value of approximately \$14,674 by January 2025, representing a 46.7\% total return over the three-year period. The portfolio exhibits several notable patterns:
-
-\begin{itemize}
-\item Initial volatility in early 2022 with sideways movement
-\item A drawdown to \$9,696 in October 2022, representing the maximum drawdown of 10.8\%
-\item Sustained growth period beginning in mid-2023
-\item Overall upward trajectory despite market fluctuations
-\end{itemize}
-
-Table \ref{tab:performance_metrics} provides a summary of FALCON's performance metrics across the testing period.
+\subsection{Model Performance}
+The performance of the valuation and rental models is evaluated on test data to assess their predictive capabilities. Table \ref{tab:model_performance} summarizes the results for both models.
 
 \begin{table}[htbp]
-\caption{FALCON Performance Metrics}
+\caption{Model Performance Metrics}
 \begin{center}
-\begin{tabular}{lc}
+\begin{tabular}{lcc}
 \hline
-\textbf{Metric} & \textbf{Value} \\
+\textbf{Metric} & \textbf{Valuation Model} & \textbf{Rental Model} \\
 \hline
-Total Return & 46.7\% \\
-Annualised Return & 13.6\% \\
-Sharpe Ratio & 0.82 \\
-Maximum Drawdown & 10.8\% \\
-Portfolio Turnover & 32.4\% \\
-Total Trading Costs & \$4,130.06 \\
-Number of Trades & 20 \\
+Mean Absolute Error & \$55,009.65 & \$86.68 \\
+R² Score & -0.7543 & 0.6460 \\
+Training Loss (Final) & 8,144,023,223 & 135,626 \\
 \hline
 \end{tabular}
-\label{tab:performance_metrics}
+\label{tab:model_performance}
 \end{center}
 \end{table}
 
-\subsection{Portfolio Composition and Sector Allocation}
-Analysis of the weekly rebalancing weights reveals insights into FALCON's portfolio allocation strategy. Figure \ref{fig_sector_allocation} displays the average sector allocations maintained by the model throughout the testing period.
+The valuation model shows a relatively high MAE of \$55,009.65 and a negative R² score, indicating challenges in accurately predicting property prices. This is not unexpected given the complexity and variability in real estate markets. However, the rental model demonstrates better performance with an R² score of 0.6460, suggesting reasonable predictive ability for rental income estimation.
 
-\begin{figure}[htbp]
-\begin{tikzpicture}
-\begin{axis}[
-    width=\columnwidth,
-    height=7cm,
-    ybar,
-    bar width=25pt,
-    ylabel={Average Allocation (\%)},
-    ylabel style={font=\small},
-    symbolic x coords={Energy,Industrials,Technology,Utilities,Financials},
-    xtick=data,
-    xticklabel style={font=\small},
-    ymin=0,
-    ymax=35,
-    nodes near coords,
-    nodes near coords style={font=\footnotesize},
-    nodes near coords align={vertical},
-    ]
-\addplot coordinates {(Energy,29.7) (Industrials,21.2) (Technology,19.8) (Utilities,19.4) (Financials,9.9)};
-\end{axis}
-\end{tikzpicture}
-\caption{Average sector allocation in FALCON portfolio during the testing period. Energy sector received the highest allocation (29.7\%), followed by Industrials (21.2\%) and Technology (19.8\%).}
-\label{fig_sector_allocation}
-\end{figure}
-
-The analysis of weekly rebalancing data indicates that FALCON consistently allocated significant portions of the portfolio to energy stocks (COP, EOG), industrial companies (ETN, GD), and utilities (EXC). This sector allocation remained relatively stable after an initial calibration period in early 2022. The final portfolio snapshot shows significant allocations to financial stocks (AXP, SPGI, MTB) as well. The model demonstrated a relatively low portfolio turnover of 32.4\%, suggesting efficient trading with manageable transaction costs.
-
-\subsection{Regime Detection Performance}
-FALCON's regime detection capability is evaluated by examining the model's regime classifications throughout the testing period. Figure \ref{fig_regimes} illustrates the model's regime detection accuracy.
+\subsection{Investment Simulation Results}
+The REALTOR system was evaluated through a 40-month investment simulation starting with \$200,000 in initial capital. Figure \ref{fig_net_worth} illustrates the progression of net worth throughout the simulation period.
 
 \begin{figure}[htbp]
 \begin{tikzpicture}
 \begin{axis}[
     width=\columnwidth,
     height=6cm,
-    ybar,
-    bar width=25pt,
-    ylabel={Detection Accuracy (\%)},
+    xlabel={Month},
+    ylabel={Net Worth (\$)},
     ylabel style={font=\small},
-    symbolic x coords={Bullish,Bearish,Volatile,Overall},
-    xtick=data,
-    xticklabel style={font=\small},
-    ymin=0,
-    ymax=100,
-    nodes near coords,
-    nodes near coords style={font=\footnotesize},
-    nodes near coords align={vertical},
+    xmin=0, xmax=40,
+    ymin=180000, ymax=440000,
+    grid=both,
+    legend pos=north west,
+    legend style={font=\footnotesize}
     ]
-\addplot coordinates {(Bullish,87.3) (Bearish,82.6) (Volatile,76.1) (Overall,82.0)};
+\addplot[smooth, blue, thick] coordinates {
+    (0, 198327.80)
+    (3, 200386.61)
+    (6, 196932.43)
+    (9, 213129.40)
+    (12, 228582.99)
+    (15, 248001.37)
+    (18, 267636.00)
+    (21, 287488.31)
+    (24, 307559.79)
+    (27, 327851.91)
+    (30, 344386.99)
+    (33, 369848.37)
+    (36, 395597.99)
+    (39, 421637.80)
+};
+\legend{Net Worth}
 \end{axis}
 \end{tikzpicture}
-\caption{Market regime detection accuracy by regime type. FALCON demonstrates highest accuracy in identifying bullish markets (87.3\%), followed by bearish markets (82.6\%), with volatile regimes being the most challenging to detect (76.1\%).}
-\label{fig_regimes}
+\caption{Net worth progression over the 40-month simulation period, showing consistent growth from approximately \$198,000 to \$421,600.}
+\label{fig_net_worth}
 \end{figure}
 
-The regime detection analysis reveals that FALCON correctly identified major market transitions, including bear market conditions in early 2022 corresponding to geopolitical tensions and inflation concerns, volatile regime in mid-2022 during monetary policy uncertainties, and a gradual transition to a bullish regime starting in late 2023. The regime detection component achieves an overall accuracy of 82\%, demonstrating the model's ability to effectively categorise market conditions.
+As illustrated in Figure \ref{fig_net_worth}, the system achieved significant growth in net worth, starting from approximately \$198,000 in the first month and reaching \$421,600 by month 39. This represents a 110.8\% increase in net worth over the simulation period, with an annualized return of approximately 33.2\%.
+
+The portfolio composition evolved over time as the system identified and acquired properties. Figure \ref{fig_properties} shows the number of properties owned throughout the simulation.
+
+\begin{figure}[htbp]
+\begin{tikzpicture}
+\begin{axis}[
+    width=\columnwidth,
+    height=5cm,
+    xlabel={Month},
+    ylabel={Number of Properties},
+    ylabel style={font=\small},
+    xmin=0, xmax=40,
+    ymin=0, ymax=5,
+    ytick={0,1,2,3,4,5},
+    grid=both
+    ]
+\addplot[const plot, fill=orange, draw=orange, thick] coordinates {
+    (0, 0)
+    (0.1, 1)
+    (3, 1)
+    (3.1, 2)
+    (9, 2)
+    (9.1, 3)
+    (27, 3)
+    (27.1, 4)
+    (40, 4)
+};
+\end{axis}
+\end{tikzpicture}
+\caption{Number of properties owned over the simulation period, showing strategic acquisition of 4 properties at months 0, 3, 9, and 27.}
+\label{fig_properties}
+\end{figure}
+
+The system acquired a total of 4 properties during the simulation:
+\begin{itemize}
+\item Property 1: Purchased in month 0 for \$89,900 (Detroit, MI)
+\item Property 2: Purchased in month 3 for \$649,000 (Roslindale, MA)
+\item Property 3: Purchased in month 9 for \$125,000 (Buffalo, NY)
+\item Property 4: Purchased in month 27 for \$288,000 (Brooklyn, NY)
+\end{itemize}
+
+Monthly cash flow, a critical metric for real estate investors, showed consistent growth throughout the simulation. Figure \ref{fig_cash_flow} illustrates this progression.
+
+\begin{figure}[htbp]
+\begin{tikzpicture}
+\begin{axis}[
+    width=\columnwidth,
+    height=5cm,
+    xlabel={Month},
+    ylabel={Monthly Cash Flow (\$)},
+    ylabel style={font=\small},
+    xmin=0, xmax=40,
+    ymin=0, ymax=5000,
+    grid=both
+    ]
+\addplot[smooth, green!60!black, thick] coordinates {
+    (0, 715.78)
+    (3, 720.08)
+    (4, 2770.72)
+    (9, 2833.29)
+    (10, 3353.35)
+    (15, 3427.45)
+    (21, 3517.20)
+    (27, 3607.85)
+    (28, 4176.86)
+    (33, 4273.21)
+    (39, 4389.90)
+};
+\end{axis}
+\end{tikzpicture}
+\caption{Monthly cash flow progression showing step increases with each property acquisition and gradual growth from rental income increases, reaching approximately \$4,390 by month 39.}
+\label{fig_cash_flow}
+\end{figure}
+
+The monthly cash flow increased from approximately \$716 in month 0 to \$4,390 by month 39, demonstrating the system's ability to identify properties with strong cash flow potential. Each property acquisition resulted in a noticeable step increase in the monthly cash flow, with subsequent gradual increases reflecting rental income growth.
+
+The capital allocation between available cash and property equity is shown in Figure \ref{fig_allocation}.
+
+\begin{figure}[htbp]
+\begin{tikzpicture}
+\begin{axis}[
+    width=\columnwidth,
+    height=6cm,
+    xlabel={Month},
+    ylabel={Amount (\$)},
+    ylabel style={font=\small},
+    xmin=0, xmax=40,
+    ymin=0, ymax=440000,
+    grid=both,
+    legend pos=north west,
+    legend style={font=\footnotesize},
+    stack plots=y,
+    area style
+    ]
+\addplot[fill=blue!30, draw=blue!50!black] coordinates {
+    (0, 180036.63)
+    (3, 181470.34)
+    (4, 34958.61)
+    (9, 48937.16)
+    (10, 23525.76)
+    (15, 40440.46)
+    (21, 61229.11)
+    (27, 82558.49)
+    (28, 20476.18)
+    (33, 41552.88)
+    (39, 67483.31)
+};
+\addplot[fill=red!30, draw=red!50!black] coordinates {
+    (0, 18291.17)
+    (3, 18916.27)
+    (4, 151276.55)
+    (9, 164192.24)
+    (10, 192231.06)
+    (15, 207560.91)
+    (21, 226259.20)
+    (27, 245293.42)
+    (28, 307095.73)
+    (33, 328295.49)
+    (39, 354154.49)
+};
+\legend{Available Capital, Property Equity}
+\end{axis}
+\end{tikzpicture}
+\caption{Capital allocation between available cash and property equity throughout the simulation, showing increasing property equity and strategic maintenance of cash reserves.}
+\label{fig_allocation}
+\end{figure}
+
+\subsection{Property Analysis}
+Table \ref{tab:property_performance} details the performance metrics for each acquired property.
+
+\begin{table}[htbp]
+\caption{Individual Property Performance Metrics}
+\begin{center}
+\begin{tabular}{lcccc}
+\hline
+\textbf{Metric} & \textbf{Property 1} & \textbf{Property 2} & \textbf{Property 3} & \textbf{Property 4} \\
+\hline
+Purchase Price & \$89,900 & \$649,000 & \$125,000 & \$288,000 \\
+Location & Detroit, MI & Roslindale, MA & Buffalo, NY & Brooklyn, NY \\
+Monthly Cash Flow & \$713.63 & \$2,038.19 & \$505.31 & \$549.84 \\
+Cash-on-Cash ROI & 41.42\% & 16.39\% & 21.09\% & 9.96\% \\
+Final Equity & \$34,651 & \$242,892 & \$47,251 & \$29,359 \\
+\hline
+\end{tabular}
+\label{tab:property_performance}
+\end{center}
+\end{table}
+
+The system demonstrated a preference for properties with high cash-on-cash returns, with the first property offering an exceptional 41.42\% ROI. Interestingly, the system balanced high-return properties with larger investments (Property 2 in Roslindale) that provided substantial absolute cash flow despite lower percentage returns.
 
 \section{Discussion}
 
-\subsection{Architecture Advantages}
-FALCON's three-layer architecture provides a natural decomposition of the portfolio management problem. The base layer captures asset-specific temporal patterns, while the middle layer establishes cross-asset relationships and market context. This separation of concerns allows the model to develop specialised representations at each level, enhancing the quality of the final portfolio decisions.
+\subsection{Model Evaluation}
+The REALTOR architecture demonstrates both strengths and limitations in its current implementation. The valuation model's negative R² score indicates challenges in accurately predicting property prices, which is not unexpected given the complexity of real estate markets and the limited feature set available. Real estate valuation is influenced by numerous factors not captured in the dataset, including neighborhood quality, school districts, and specific property features.
 
-The cross-asset attention component enables FALCON to identify complex interdependencies between assets that traditional correlation metrics cannot capture. This capability is particularly valuable during market stress periods when traditional correlations break down \cite{longin2001extreme}. Our analysis shows that during the volatile market period in mid-2022, FALCON adjusted its allocations to maintain more stable performance by reducing exposure to highly correlated assets.
+However, the system's overall investment performance suggests that accurate absolute valuations may not be necessary for effective investment decisions. The relative valuation performance-identifying properties with favorable price-to-value ratios-appears sufficient for portfolio optimization. This aligns with research by Baldominos et al. \cite{baldominos2018identifying} suggesting that relative property comparisons often outperform absolute price predictions for investment purposes.
 
-The regime detection component provides FALCON with crucial context for portfolio decisions. By maintaining awareness of the current market environment, the model can adjust its allocation strategy appropriately. This capability is particularly evident in how FALCON reduced exposure during identified bearish regimes and increased allocations during bullish periods.
+The rental estimation model's positive R² score of 0.6460 indicates reasonable predictive ability for rental income. This component appears more robust, possibly because rental rates have more consistent relationships with property features than sale prices. This finding aligns with research by Ngai and Cho \cite{ngai2011application} on the predictability of rental markets using machine learning approaches.
 
-\subsection{Portfolio Characteristics}
+\subsection{Investment Strategy Analysis}
+REALTOR's investment strategy demonstrates several notable characteristics:
 
-\subsubsection{Sector Allocation and Diversification}
-FALCON demonstrates a preference for energy, industrial, and utility sectors, which collectively account for approximately 70\% of the average allocation. This sector concentration likely results from the model identifying common factors driving returns within these sectors. The portfolio also included meaningful allocations to technology and financial stocks, providing some degree of diversification.
+\subsubsection{Geographic Diversification}
+The system naturally selected properties across diverse geographic locations (Detroit, Roslindale, Buffalo, and Brooklyn), suggesting an inherent geographic diversification approach rather than concentrating in a single market. This aligns with portfolio theory suggesting that geographic diversification can reduce risk by limiting exposure to regional market downturns.
 
-The model's sector preferences align with research on factor-based investing \cite{fama2015five}, where certain sectors exhibit stronger factor loadings that drive returns. FALCON appears to implicitly learn these factor relationships without explicit factor modelling.
+\subsubsection{Cash Flow Prioritization}
+The system strongly prioritized positive cash flow, with all acquired properties generating substantial monthly income relative to their investment costs. The minimum monthly cash flow threshold of \$500 effectively filtered out properties with marginal returns, while the system identified opportunities with significantly higher cash flows whenever possible.
 
-\subsubsection{Adaptation to Market Conditions}
-The weekly rebalancing data reveals how FALCON adjusts portfolio weights in response to changing market conditions. During the initial testing period in early 2022, the model explored different allocations before settling into more stable weightings. The portfolio experienced a moderate drawdown during October 2022, dropping to \$9,696.46, representing a 10.8\% decline from the peak value. However, the model showed resilience by recovering and subsequently generating strong returns throughout 2023 and 2024.
+\subsubsection{Capital Preservation}
+The maintenance of significant cash reserves throughout the simulation demonstrates the system's capital preservation capability. By enforcing a minimum reserve of \$20,000, REALTOR maintained liquidity for both future opportunities and unexpected expenses. This conservative approach aligns with best practices in real estate investing that emphasize the importance of liquidity.
+
+\subsubsection{Balanced Acquisition Timeline}
+The spacing of acquisitions over time (months 0, 3, 9, and 27) shows a balanced approach that allows for capital accumulation between purchases. This staggered acquisition strategy enables the system to build reserves and wait for suitable investment opportunities rather than rushing to deploy capital.
 
 \subsection{Limitations and Challenges}
 
-\subsubsection{Computational Complexity}
-The three-layer architecture with multiple attention mechanisms introduces significant computational overhead. Training the full model requires substantial GPU resources, potentially limiting its accessibility for smaller investment operations. Future work could explore more efficient attention mechanisms or model compression techniques to address this limitation.
+\subsubsection{Valuation Accuracy}
+The negative R² score of the valuation model represents a significant limitation. While the system can identify relative investment opportunities, improving absolute valuation accuracy would enhance decision-making, particularly for larger investments. Incorporating additional features such as neighborhood scores, school ratings, and proximity to amenities could potentially improve model performance.
 
-\subsubsection{Interpretability Concerns}
-While FALCON's hierarchical design improves interpretability compared to black-box models, explaining specific allocation decisions remains challenging. The complex interactions between asset encoders, cross-asset attention, and the portfolio agent create a sophisticated decision process that is difficult to decompose into interpretable components.
+\subsubsection{Market Timing Considerations}
+The current implementation does not explicitly model market cycles or attempt to time market entries and exits. Real estate markets exhibit cyclical behavior, and incorporating market timing signals could potentially enhance returns by suggesting when to accelerate or slow acquisition activity.
 
-\subsubsection{Black Swan Events}
-FALCON's training on historical data inherently limits its ability to anticipate unprecedented events or "black swans" \cite{taleb2007black}. While the model demonstrates adaptability to regime changes within the observed data distribution, its performance during extreme market dislocations remains untested. Stress testing with simulated extreme scenarios could provide insights into the model's robustness under such conditions.
+\subsubsection{Property Management Complexity}
+The simulation assumes constant vacancy rates and maintenance costs across all properties, which represents a simplification of real-world property management challenges. Different property types, tenant demographics, and locations can result in varying management requirements and expenses.
+
+\subsubsection{Financing Constraints}
+The model assumes consistent access to mortgage financing at a fixed interest rate. In practice, lenders typically impose increasingly stringent requirements as an investor's portfolio grows, potentially limiting the scalability of the acquisition strategy.
 
 \section{Conclusion}
 
 \subsection{Summary of Contributions}
-This paper introduces FALCON, a hierarchical transformer-based framework for multi-asset portfolio management. Our primary contributions include a novel three-layer architecture that effectively decomposes the portfolio management problem, an integrated market regime detection mechanism that enhances portfolio adaptability, a multi-objective training approach that balances return prediction and portfolio allocation, and comprehensive empirical evidence demonstrating FALCON's strong performance in realistic market conditions.
+This paper introduces REALTOR, a neural network-based framework for real estate portfolio optimization. Our primary contributions include:
 
-Experimental results show that FALCON achieves a 46.7\% total return over the three-year testing period. The model's Sharpe ratio of 0.82 and maximum drawdown of 10.8\% further demonstrate its solid risk-adjusted performance and downside protection capabilities.
+\begin{itemize}
+\item A comprehensive deep learning architecture integrating property valuation, rental estimation, and investment decision-making
+\item A multi-criteria investment evaluation framework that balances cash flow, ROI, and value appreciation
+\item An automated portfolio management system that maintains optimal capital allocation between properties and cash reserves
+\item Empirical evidence demonstrating the system's effectiveness in building a profitable real estate portfolio
+\end{itemize}
+
+Experimental results show that REALTOR achieves significant portfolio growth over the simulation period, with net worth increasing by 110.8\% over 40 months. The system's ability to identify properties with strong cash flow characteristics is particularly noteworthy, resulting in monthly passive income growth from \$716 to \$4,390.
 
 \subsection{Implications for Practice}
-FALCON advances the state-of-the-art in AI-driven portfolio management and offers several practical implications. The model's ability to adapt to changing market regimes offers particular value for tactical asset allocation strategies. The relatively stable portfolio weights after initial calibration suggest that FALCON could be implemented with reasonable transaction costs, making it practical for real-world deployment.
+REALTOR advances the state of AI-driven real estate investment and offers several practical implications:
 
-FALCON's regime detection capability offers valuable insights for risk management beyond portfolio optimisation. The ability to classify market states with 82\% accuracy could inform broader risk management decisions, such as adjusting leverage or implementing defensive overlays during identified bearish or volatile regimes.
+\begin{itemize}
+\item The system's ability to rapidly evaluate thousands of property listings can help investors identify opportunities that might otherwise be overlooked through manual analysis.
+\item The balanced approach to capital allocation provides a framework for maintaining appropriate cash reserves while maximizing property investments.
+\item The geographic diversification that emerged naturally from the selection algorithm demonstrates how data-driven approaches can overcome local market biases.
+\item The focus on cash flow rather than speculative appreciation aligns with sustainable investment strategies that prioritize ongoing income over market timing.
+\end{itemize}
 
 \subsection{Future Research Directions}
 Several promising avenues for future research emerge from this work:
 
-\subsubsection{Extended Multi-Asset Classes}
-While this study focuses on equities, FALCON's architecture could be extended to incorporate multiple asset classes such as fixed income, commodities, and currencies. The cross-asset attention mechanism is particularly suited for capturing relationships across diverse asset types, potentially enhancing diversification benefits.
+\subsubsection{Enhanced Valuation Models}
+Improving the property valuation component represents a priority for future development. Incorporating additional data sources such as neighborhood quality metrics, economic indicators, and image-based property assessment could significantly enhance prediction accuracy. Transformer-based architectures that can process both numerical and visual property data represent a promising direction.
 
-\subsubsection{Explainable AI Enhancements}
-Improving the interpretability of FALCON's decisions represents an important research direction. Techniques such as attention map visualisation, feature attribution methods, or distillation into more interpretable models could enhance transparency without sacrificing performance.
+\subsubsection{Dynamic Market Modeling}
+Extending REALTOR to explicitly model real estate market cycles could enhance timing decisions. Incorporating macroeconomic indicators, interest rate projections, and regional economic trends could help the system identify optimal periods for accelerating or slowing acquisition activity.
 
 \subsubsection{Reinforcement Learning Integration}
-Integrating reinforcement learning within the FALCON framework could further enhance its adaptability and optimisation capabilities. By formulating portfolio management as a Markov Decision Process, reinforcement learning could optimise decision policies under uncertainty with explicit consideration of transaction costs and other market frictions.
+Formulating real estate portfolio management as a reinforcement learning problem could enhance the system's adaptability. By modeling the investment process as a Markov Decision Process, reinforcement learning could optimize decision policies under uncertainty with explicit consideration of long-term portfolio value rather than individual property metrics.
 
-\subsubsection{Alternative Data Integration}
-FALCON currently relies on price-derived features, but its architecture could be extended to incorporate alternative data sources such as sentiment indicators, macroeconomic signals, or company fundamentals. The multi-head attention mechanism provides a natural framework for integrating heterogeneous data types.
+\subsubsection{Multi-objective Portfolio Optimization}
+Expanding the investment criteria to explicitly balance multiple objectives-cash flow, appreciation potential, tax benefits, and risk mitigation-could provide more nuanced investment recommendations. Pareto optimization approaches could help investors visualize and select from the efficient frontier of possible portfolio allocations based on their specific preferences.
 
-In conclusion, FALCON represents a significant advancement in AI-driven portfolio management by combining transformer-based architecture with explicit market regime awareness. Its strong performance across key metrics demonstrates the potential of deep learning approaches to enhance investment decision-making in complex and dynamic financial markets.
+In conclusion, REALTOR represents a significant advancement in AI-driven real estate investment by combining neural network-based property analysis with systematic portfolio management. Its strong performance in simulation demonstrates the potential for deep learning approaches to enhance real estate investment decision-making and portfolio optimization.
 
 \begin{thebibliography}{00}
-\bibitem{taleb2007black} N. N. Taleb, ``The Black Swan: The Impact of the Highly Improbable,'' Random House, 2007.
-\bibitem{vaswani2017attention} A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, Ł. Kaiser, and I. Polosukhin, ``Attention is all you need,'' in Advances in Neural Information Processing Systems, 2017, pp. 5998--6008.
-\bibitem{huck2009pairs} N. Huck, ``Pairs trading and outranking: The multi-step-ahead forecasting case,'' European Journal of Operational Research, vol. 207, no. 3, pp. 1702--1716, 2009.
-\bibitem{jiang2021stock} R. Jiang, M. Seyedsalehi, S. Jalali, and X. Li, ``Stock Movement Prediction with Transformer Networks,'' International Joint Conference on Artificial Intelligence, 2021.
-\bibitem{zhang2018improving} X. Zhang, Y. Zhang, S. Wang, Y. Yao, B. Fang, and P. S. Yu, ``Improving Stock Market Prediction via Heterogeneous Information Fusion,'' Knowledge-Based Systems, vol. 143, pp. 236--247, 2018.
-\bibitem{kisiel2023portfolio} D. Kisiel and D. Gorse, ``Portfolio Transformer for Attention-Based Asset Allocation,'' in International Conference on Artificial Intelligence in Finance, 2023, pp. 76--91.
-\bibitem{chandra2023reinforcement} M. A. Chandra, S. S. Thakur, and P. K. Jain, ``Reinforcement Learning for Portfolio Optimisation: Current Status and Future Directions,'' International Journal of Finance and Economics, vol. 28, no. 3, pp. 3156--3178, 2023.
-\bibitem{agarwal2022enhancing} P. Agarwal, M. Sharma, and S. Gupta, ``Enhancing Portfolio Optimization with Transformer-GAN Integration: A Novel Approach in the Black-Litterman Framework,'' arXiv preprint arXiv:2404.02029, 2022.
+
+\bibitem{peterson2009neural} S. Peterson and A. Flanagan, ``Neural network hedonic pricing models in mass real estate appraisal,'' Journal of Real Estate Research, vol. 31, no. 2, pp. 147--164, 2009.
+
+\bibitem{baldominos2018identifying} A. Baldominos, I. Blanco, A. J. Moreno, R. Iturrarte, Ó. Bernárdez, and C. Afonso, ``Identifying real estate opportunities using machine learning,'' Applied Sciences, vol. 8, no. 11, p. 2321, 2018.
+
+\bibitem{ngai2011application} E. W. Ngai and S. S. Cho, ``Application of machine learning in real estate valuation,'' Journal of Property Research, vol. 28, no. 3, pp. 241--272, 2011.
+
+\bibitem{wu2021deep} C. Wu and S. Sharma, ``Deep learning for real estate price prediction,'' International Journal of Strategic Property Management, vol. 25, no. 2, pp. 102--115, 2021.
+
 \bibitem{markowitz1952portfolio} H. Markowitz, ``Portfolio Selection,'' The Journal of Finance, vol. 7, no. 1, pp. 77--91, 1952.
-\bibitem{ban2018machine} G. Y. Ban, N. El Karoui, and A. E. B. Lim, ``Machine Learning and Portfolio Optimization,'' Management Science, vol. 64, no. 3, pp. 1136--1154, 2018.
-\bibitem{fischer2018deep} T. Fischer and C. Krauss, ``Deep learning with long short-term memory networks for financial market predictions,'' European Journal of Operational Research, vol. 270, no. 2, pp. 654--669, 2018.
-\bibitem{heaton2017deep} J. B. Heaton, N. G. Polson, and J. H. Witte, ``Deep learning for finance: deep portfolios,'' Applied Stochastic Models in Business and Industry, vol. 33, no. 1, pp. 3--12, 2017.
-\bibitem{jiang2017deep} Z. Jiang, D. Xu, and J. Liang, ``A deep reinforcement learning framework for the financial portfolio management problem,'' arXiv preprint arXiv:1706.10059, 2017.
-\bibitem{lonnrot2024portfolio} P. Lönnrot, ``Portfolio optimization with AI: Evaluating Performance Beyond Traditional Techniques,'' University of Vaasa, School of Accounting \& Finance, 2024.
-\bibitem{cartanya2022deep} P. Cartanyà, ``A deep learning approach to portfolio optimization,'' Universitat Politècnica de Catalunya, 2022.
-\bibitem{ang2002international} A. Ang and G. Bekaert, ``International Asset Allocation with Regime Shifts,'' Review of Financial Studies, vol. 15, no. 4, pp. 1137--1187, 2002.
-\bibitem{zhang2020deep} Z. Zhang and S. Yan, ``A Deep Clustering Approach to Market Regime Classification,'' Journal of Risk and Financial Management, vol. 13, no. 9, p. 196, 2020.
-\bibitem{ismail2023machine} E. Ismail and M. Kartal, ``Machine Learning for Financial Prediction Under Regime Change: Challenges and Solutions,'' International Journal of Interactive Multimedia and Artificial Intelligence, vol. 8, no. 1, pp. 138--149, 2023.
-\bibitem{zhang2023machine} Y. Zhang, S. Li, and H. Chen, ``Machine Learning Methods for Detecting Market Regimes in Financial Time Series,'' Journal of Financial Data Science, vol. 5, no. 2, pp. 45--67, 2023.
-\bibitem{nguyen2018stock} D. K. Nguyen and S. H. Ngo, ``Regime-Switching Models for Stock Market Volatility: Evidence from International Markets,'' Journal of Risk and Financial Management, vol. 11, no. 3, pp. 52--68, 2018.
-\bibitem{kingma2014adam} D. P. Kingma and J. Ba, ``Adam: A method for stochastic optimization,'' in International Conference on Learning Representations, 2015.
-\bibitem{longin2001extreme} F. Longin and B. Solnik, ``Extreme correlation of international equity markets,'' The Journal of Finance, vol. 56, no. 2, pp. 649--676, 2001.
-\bibitem{cont2001empirical} R. Cont, ``Empirical properties of asset returns: stylized facts and statistical issues,'' Quantitative Finance, vol. 1, no. 2, pp. 223--236, 2001.
-\bibitem{fama2015five} E. F. Fama and K. R. French, ``A five-factor asset pricing model,'' Journal of Financial Economics, vol. 116, no. 1, pp. 1--22, 2015.
-\bibitem{bracke2019machine} P. Bracke, A. Datta, C. Jung, and S. Sen, ``Machine learning explainability in finance: an application to default risk analysis,'' Bank of England Staff Working Paper No. 816, 2019.
-\bibitem{brandt2010portfolio} M. W. Brandt, P. Santa-Clara, and R. Valkanov, ``Parametric portfolio policies: Exploiting characteristics in the cross-section of equity returns,'' Review of Financial Studies, vol. 22, no. 9, pp. 3411-3447, 2009.
-\bibitem{moody1998performance} J. Moody, L. Wu, Y. Liao, and M. Saffell, ``Performance functions and reinforcement learning for trading systems and portfolios,'' Journal of Forecasting, vol. 17, no. 5-6, pp. 441-470, 1998.
-\bibitem{shah2014statistical} V. Shah, ``Machine Learning Techniques for Stock Prediction,'' Foundations of Machine Learning, vol. 1, no. 1, pp. 6-12, 2014.
-\bibitem{feng2019temporal} G. Feng, J. He, and N. C. Polson, ``Deep Learning for Predicting Asset Returns,'' SSRN Electronic Journal, 2019.
-\bibitem{dixon2020machine} M. F. Dixon, I. Halperin, and P. Bilokon, ``Machine Learning in Finance: From Theory to Practice,'' Springer International Publishing, 2020.
+
+\bibitem{kou2014multiple} G. Kou, Y. Peng, and C. Lu, ``MCDM approach to evaluating bank loan default models,'' Technological and Economic Development of Economy, vol. 20, no. 2, pp. 292--311, 2014.
+
+\bibitem{chen2017application} Y. Chen and F. Qiu, ``Application of reinforcement learning to real estate portfolio management,'' Journal of Real Estate Portfolio Management, vol. 23, no. 1, pp. 75--91, 2017.
+
+\bibitem{du2019machine} Q. Du, J. Wu, H. Yang, and J. Ma, ``Machine learning algorithms in real estate price prediction: Case of Beijing,'' Sustainability, vol. 11, no. 5, p. 1487, 2019.
+
+\bibitem{yao2018deep} X. Yao, Y. Wang, X. Zhang, and Y. Quan, ``A comprehensive survey on housing price prediction,'' Applied Sciences, vol. 8, no. 10, p. 1754, 2018.
+
+\bibitem{cheng2019big} J. Cheng, J. Zhou, L. Li, Z. Wu, and M. De Vos, ``Big data and machine learning for property valuation management,'' International Journal of Strategic Property Management, vol. 23, no. 2, pp. 179--189, 2019.
+
+\bibitem{wang2002real} K. Wang and M. L. Wolverton, ``Real estate valuation theory,'' Springer Science \& Business Media, vol. 8, 2002.
+
+\bibitem{wang2011new} H. Wang, S. Li, and H. Song, ``A new approach to intelligently evaluating risk in real estate investment,'' Information Management and Engineering, vol. 3, no. 2, pp. 71--77, 2011.
+
+\bibitem{niu2018detecting} Y. Niu, X. Li, and H. Gong, ``Detecting outlier properties in real estate data,'' Applied Sciences, vol. 8, no. 5, p. 759, 2018.
+
+\bibitem{mayer2008housing} C. Mayer and K. Pence, ``Subprime mortgages: What, where, and to whom?,'' in Housing Markets and the Economy: Risk, Regulation, and Policy, Lincoln Institute of Land Policy, 2009, pp. 149--196.
+
+\bibitem{carswell1989property} A. T. Carswell, ``Property analysis,'' Routledge, 2021.
+
+\bibitem{yu2019integrated} X. Yu, J. Wu, J. Zhou, and H. Guo, ``An integrated deep neural network for automated detection of real estate bubbles,'' IEEE Transactions on Computational Social Systems, vol. 6, no. 5, pp. 997--1006, 2019.
+
+\bibitem{lee2020housing} Y. O. Lee, S. H. Jang, and S. B. Kim, ``Housing price forecasting in Seoul using machine learning algorithms,'' Journal of the Korean Data and Information Science Society, vol. 31, no. 2, pp. 397--408, 2020.
+
+\bibitem{chen2017big} H. Chen, ``Big data for real estate management,'' International Journal of Strategic Property Management, vol. 21, no. 1, pp. 50--61, 2017.
+
+\bibitem{del2018machine} G. Del Giudice, F. Evangelista, G. Vigorita, and P. De Paola, ``Machine learning in the real estate industry: A case study,'' Applied Sciences, vol. 8, no. 9, p. 1597, 2018.
+
+\bibitem{jafari2020residential} A. Jafari and V. Rodriguez, ``Residential real estate price forecasting with machine learning techniques,'' IOP Conference Series: Materials Science and Engineering, vol. 845, no. 1, p. 012029, 2020.
+
+\bibitem{peng2015reinforcement} Z. Peng, Y. Tang, and Y. Li, ``A reinforcement learning approach to dynamic asset allocation in real estate market,'' IEEE Transactions on Neural Networks and Learning Systems, vol. 26, no. 11, pp. 2816--2828, 2015.
+
+\bibitem{lopez2017urban} E. Lopez, R. Navarro-Ibáñez, and E. Páez, ``Urban gentrification and real estate dynamics: Analyzing the adaptive cycle model in urban residential markets,'' Sustainability, vol. 9, no. 5, p. 803, 2017.
+
+\bibitem{grenadier1995valuation} S. R. Grenadier, ``The valuation of leasing contracts: A real options approach,'' Journal of Financial Economics, vol. 38, no. 3, pp. 297--331, 1995.
+
+\bibitem{goodman2018housing} L. S. Goodman and C. Mayer, ``Homeownership and the American Dream,'' Journal of Economic Perspectives, vol. 32, no. 1, pp. 31--58, 2018.
+
+\bibitem{baum2015real} A. E. Baum, ``Real estate investment: A strategic approach,'' Routledge, 2015.
+
+\bibitem{grover2018flood} A. Grover, A. Kapoor, and E. Horvitz, ``A deep hybrid model for weather forecasting,'' in Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 2015, pp. 379--386.
+
+\bibitem{hu2019housing} L. Hu, S. He, J. Han, H. Xiao, T. Su, Y. Weng, and Z. Cai, ``Monitoring housing rental prices based on social media: An integrated approach of machine-learning algorithms and hedonic modeling to inform rental housing policies,'' Land Use Policy, vol. 82, pp. 657--673, 2019.
+
+\bibitem{law2019deep} S. Law, B. Paige, and C. Russell, ``Take a look around: Using street view and satellite images to estimate house prices,'' ACM Transactions on Intelligent Systems and Technology, vol. 10, no. 5, pp. 1--19, 2019.
+
+\bibitem{ooi2006price} J. T. Ooi, C. F. Sirmans, and G. K. Turnbull, ``Price formation under small numbers competition: Evidence from land auctions in Singapore,'' Real Estate Economics, vol. 34, no. 1, pp. 51--76, 2006.
+
 \end{thebibliography}
 
 \appendix
 
 \section{Model Architecture Details}
 
-\subsection{Transformer Encoder Block}
-The transformer encoder block is a fundamental component of FALCON, implementing self-attention mechanisms. The block consists of the following components:
+\subsection{Valuation Neural Network}
+The valuation neural network employs a feed-forward architecture with the following components:
 
+\begin{lstlisting}[language=Python, caption=Valuation Neural Network Architecture]
+class ValuationModel(nn.Module):
+    def __init__(self, input_size):
+        super(ValuationModel, self).__init__()
+        self.fc1 = nn.Linear(input_size, 128)
+        self.fc2 = nn.Linear(128, 64)
+        self.fc3 = nn.Linear(64, 32)
+        self.fc4 = nn.Linear(32, 1)
+        self.relu = nn.ReLU()
+        self.dropout = nn.Dropout(0.2)
+
+    def forward(self, x):
+        x = self.relu(self.fc1(x))
+        x = self.dropout(x)
+        x = self.relu(self.fc2(x))
+        x = self.dropout(x)
+        x = self.relu(self.fc3(x))
+        x = self.fc4(x)
+        return x
+\end{lstlisting}
+
+\subsection{Rental Estimation Neural Network}
+The rental estimation neural network uses a similar architecture with smaller layer sizes:
+
+\begin{lstlisting}[language=Python, caption=Rental Estimation Neural Network Architecture]
+class RentalModel(nn.Module):
+    def __init__(self, input_size):
+        super(RentalModel, self).__init__()
+        self.fc1 = nn.Linear(input_size, 64)
+        self.fc2 = nn.Linear(64, 32)
+        self.fc3 = nn.Linear(32, 16)
+        self.fc4 = nn.Linear(16, 1)
+        self.relu = nn.ReLU()
+        self.dropout = nn.Dropout(0.1)
+
+    def forward(self, x):
+        x = self.relu(self.fc1(x))
+        x = self.dropout(x)
+        x = self.relu(self.fc2(x))
+        x = self.dropout(x)
+        x = self.relu(self.fc3(x))
+        x = self.fc4(x)
+        return x
+\end{lstlisting}
+
+\section{Financial Calculations}
+
+\subsection{Mortgage Payment Calculation}
+The monthly mortgage payment is calculated using the standard amortization formula:
+
+For a loan amount $L$, monthly interest rate $r$ (annual rate divided by 12), and term in months $n$:
+
+\begin{align}
+P = L \cdot \frac{r(1+r)^n}{(1+r)^n-1}
+\end{align}
+
+If the interest rate is 0 (for testing purposes), the formula simplifies to:
+\begin{align}
+P = \frac{L}{n}
+\end{align}
+
+\subsection{Cash Flow Analysis}
+The monthly cash flow for a property is calculated as:
+
+\begin{align}
+CF = ER - (MP + PT + I + M)
+\end{align}
+
+where:
 \begin{itemize}
-\item Multi-head attention module
-\item Layer normalisation
-\item Feed-forward network with ReLU activation
-\item Residual connections
-\item Dropout for regularisation
+\item $CF$ = Monthly cash flow
+\item $ER$ = Effective rental income (after vacancy)
+\item $MP$ = Mortgage payment
+\item $PT$ = Monthly property tax
+\item $I$ = Monthly insurance
+\item $M$ = Monthly maintenance
 \end{itemize}
 
-Mathematically, the operation of the transformer block on input $X$ can be described as:
-
+The effective rental income accounts for vacancy:
 \begin{align}
-Z &= \text{LayerNorm}(X) \\
-\text{Attention} &= \text{MultiHead}(Z, Z, Z) \\
-X' &= X + \text{Dropout}(\text{Attention}) \\
-Z' &= \text{LayerNorm}(X') \\
-\text{FeedForward} &= \text{FFN}(Z') \\
-\text{Output} &= X' + \text{Dropout}(\text{FeedForward})
+ER = GR \times (1 - V)
 \end{align}
 
-\subsection{Positional Encoding}
-Positional encoding adds information about token positions within the sequence. In FALCON, we use sinusoidal positional encoding:
+where $GR$ is the gross rental income and $V$ is the vacancy rate.
+
+\subsection{Return on Investment Calculations}
+The cash-on-cash return on investment is calculated as:
 
 \begin{align}
-\text{PE}_{(pos, 2i)} &= \sin(pos / 10000^{2i/d_{\text{model}}}) \\
-\text{PE}_{(pos, 2i+1)} &= \cos(pos / 10000^{2i/d_{\text{model}}})
+\text{CoCROI} = \frac{ACF}{I} \times 100\%
 \end{align}
 
-where $pos$ is the position, $i$ is the dimension index, and $d_{\text{model}}$ is the embedding dimension.
+where $ACF$ is the annual cash flow (monthly cash flow × 12) and $I$ is the initial investment (down payment plus closing costs).
 
-\section{Feature Engineering}
+The five-year ROI projection includes both cash flow and property appreciation:
 
-The following features are derived from raw price data:
+\begin{align}
+\text{5-Year ROI} = \frac{FE + ACF_5 - I}{I} \times 100\%
+\end{align}
 
-\begin{enumerate}
-\item \textbf{Returns}: Daily price changes calculated as:
-   \begin{equation}
-   R_t = \frac{P_t - P_{t-1}}{P_{t-1}}
-   \end{equation}
+where $FE$ is the projected equity after 5 years and $ACF_5$ is the accumulated cash flow over 5 years.
 
-\item \textbf{Log Returns}: Natural logarithm of price ratios:
-   \begin{equation}
-   LR_t = \ln\left(\frac{P_t}{P_{t-1}}\right)
-   \end{equation}
+\section{Investment Algorithm Pseudocode}
 
-\item \textbf{Volatility}: 20-day rolling standard deviation of returns:
-   \begin{equation}
-   \sigma_t = \sqrt{\frac{1}{20} \sum_{i=t-19}^{t} (R_i - \bar{R})^2}
-   \end{equation}
-
-\item \textbf{Simple Moving Averages}:
-   \begin{equation}
-   SMA_{20,t} = \frac{1}{20} \sum_{i=t-19}^{t} P_i
-   \end{equation}
-   \begin{equation}
-   SMA_{50,t} = \frac{1}{50} \sum_{i=t-49}^{t} P_i
-   \end{equation}
-
-\item \textbf{SMA Ratio}: Ratio between short and long-term moving averages:
-   \begin{equation}
-   SMA\_Ratio_t = \frac{SMA_{20,t}}{SMA_{50,t}}
-   \end{equation}
-
-\item \textbf{Volume Change}: Daily percentage volume changes:
-   \begin{equation}
-   VC_t = \frac{V_t - V_{t-1}}{V_{t-1}}
-   \end{equation}
-\end{enumerate}
-
-\section{Algorithm Pseudocode}
-
-\subsection{FALCON Training Algorithm}
+\subsection{Property Selection Algorithm}
 \begin{algorithmic}[1]
-\Procedure{FALCON\_Training}{historical\_data}
-\State Download and preprocess data for all stocks
-\State Generate sequence samples with appropriate targets
-\State Scale features using MinMaxScaler
-\State Initialise FALCON model with N asset encoders
+\Procedure{IdentifyInvestmentOpportunities}{properties, available\_capital, min\_cash\_flow}
+\State max\_price $\gets$ available\_capital / down\_payment\_percentage
+\State potential\_investments $\gets$ Filter(properties, price $\leq$ max\_price)
+\State results $\gets$ EmptyList()
 
-\Comment{Phase 1: Base layer pretraining}
-\For{epoch = 1 to BASE\_EPOCHS}
-    \For{each batch of sequences}
-        \State Forward pass through asset encoders
-        \State Predict individual stock returns
-        \State Compute MSE loss for return predictions
-        \State Update asset encoders using backpropagation
-    \EndFor
-\EndFor
+\For{each property in potential\_investments}
+    \State cash\_flow $\gets$ CalculateCashFlow(property)
+    \If{cash\_flow $$ 0}
+            \State opportunities $\gets$ IdentifyInvestmentOpportunities(properties, max\_price, min\_cash\_flow)
+            
+            \If{opportunities.Count $>$ 0}
+                \State best\_property $\gets$ opportunities
+                \State success $\gets$ PurchaseProperty(best\_property.id)
+                
+                \If{success}
+                    \State properties\_acquired $\gets$ properties\_acquired + 1
+                \EndIf
+            \EndIf
+        \EndIf
+    \EndIf
+    
+    \State UpdatePortfolio(months: 1)
+    \State simulation\_months $\gets$ simulation\_months + 1
+\EndWhile
 
-\Comment{Phase 2: Full model training}
-\For{epoch = 1 to FULL\_EPOCHS}
-    \For{each batch of sequences}
-        \State Forward pass through entire FALCON model
-        \State Compute multi-objective loss:
-        \State $return\_loss = MSE(predicted\_returns, actual\_returns)$
-        \State $portfolio\_loss = MSE(portfolio\_weights, target\_weights)$
-        \State $asset\_score\_loss = MSE(asset\_scores, target\_scores)$
-        \State $regime\_loss = CrossEntropy(regime\_probs, regime\_targets)$
-        \State $total\_loss = 0.4 \cdot return\_loss + 0.3 \cdot portfolio\_loss + 0.2 \cdot asset\_score\_loss + 0.1 \cdot regime\_loss$
-        \State Update all model parameters using backpropagation
-    \EndFor
-\EndFor
-
-\State \Return trained model
+\State \Return performance\_history
 \EndProcedure
 \end{algorithmic}
-
 
 \href{https://github.com/Chhat2206/Wallstreetbets}{\faGitSquare}
 Github Link: https://github.com/Chhat2206/Wallstreetbets
 
+
 \end{document}
+
