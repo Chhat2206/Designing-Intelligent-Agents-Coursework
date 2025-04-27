@@ -22,6 +22,9 @@ from plotly.subplots import make_subplots
 import urllib.request
 from dash import Dash, dcc, html, Input, Output, callback_context, ctx
 import threading
+import webbrowser
+import time
+import json
 
 # Suppress warnings
 warnings.filterwarnings('ignore')
@@ -1302,8 +1305,6 @@ class RealEstateAI:
         }
 
         # Save to file with explicit conversion of NumPy types to Python native types
-        import json
-
         # Custom encoder to handle NumPy and other non-standard types
         class NumpyEncoder(json.JSONEncoder):
             def default(self, obj):
@@ -1450,7 +1451,7 @@ class RealEstateAI:
             return None, None
         
         # Create an event to signal when the button is clicked
-        import threading
+        
         next_step_event = threading.Event()
         
         # Convert portfolio to DataFrame
@@ -1693,9 +1694,6 @@ class RealEstateAI:
         
         app = Dash(__name__)
         app.layout = html.Div([
-            html.H1(f"Real Estate Investment Portfolio - {self.current_date.strftime('%Y-%m-%d')}", 
-                    style={'textAlign': 'center', 'marginBottom': 30}),
-            
             # Control buttons div
             html.Div([
                 # Back button (initially hidden)
@@ -1773,10 +1771,6 @@ class RealEstateAI:
         
         # Run the app if show_plot is True
         if show_plot:
-            import threading
-            import webbrowser
-            import time
-            
             def run_dash_app():
                 # Open browser after a short delay
                 def open_browser():
@@ -1837,7 +1831,7 @@ if __name__ == "__main__":
     min_cash_flow = 500
 
     # Freeze agent output to give more time for analysing the visualisation
-    interactive_visualization = True
+    interactive_visualization = False
 
     # Run the simulation
     ai = run_real_estate_simulation(data_path, initial_capital, num_properties, min_cash_flow, interactive_visualization)
