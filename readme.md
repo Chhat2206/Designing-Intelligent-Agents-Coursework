@@ -7,7 +7,8 @@ This project provides an end-to-end pipeline for identifying, evaluating, and si
 - Neural network models for property valuation and rental estimation  
 - Cash flow, ROI, and portfolio simulation over time  
 - Automated investment strategy with customizable criteria  
-- Save and load trained models and simulation results  
+- Save and load trained models and simulation results
+- Interactive state and county level visualisation
 
 ## Installation
 1. Clone the repository  
@@ -31,10 +32,11 @@ Make sure the `property_listings.csv` and `Model.py` are included in the into th
    ai = run_real_estate_simulation(
        initial_capital=200000,
        num_properties=5,
-       min_cash_flow=100
+       min_cash_flow=100,
+       interactive_visualization = True
    )
    ```
-    All these settings are hyperparameters that can be tuned. 
+    All these settings (with exception to Interactive Visualisation) are hyperparameters that can be tuned. 
 
 6. View generated plots and access saved models (`*.pt`, `*.pkl`) in your workspace or Drive.
 
