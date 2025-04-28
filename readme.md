@@ -13,8 +13,7 @@ This project provides an end-to-end pipeline for identifying, evaluating, and si
 ## Installation
 1. Clone the repository  
    ```bash
-   git clone https://github.com/yourusername/real-estate-ai.git
-   cd real-estate-ai
+   https://github.com/Chhat2206/Designing-Intelligent-Agents-Coursework
    ```
 
 3. Place your property listings CSV (e.g. `property_listings.csv`) in the project root.
